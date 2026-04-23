@@ -1,0 +1,4 @@
+/* This should work */
+notebook.split-view-inactive-pane widget:selected {
+    color: red;
+}
