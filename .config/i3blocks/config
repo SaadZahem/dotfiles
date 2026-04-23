@@ -1,0 +1,81 @@
+# vim: ft=toml
+# vim: et ts=4 sw=4 sts=4
+
+# Global settings
+separator=true
+separator_block_width=15
+markup=pango
+
+[touchpad]
+command=scripts/touchpad.sh
+color=#ff5555
+interval=once
+signal=11
+
+[numlock]
+command=scripts/numlock.sh
+color=#ffaa00
+interval=1
+
+[volume]
+command=scripts/volume.sh
+color=#00bbff
+interval=once
+signal=11
+
+[brightness]
+command=scripts/brightness.sh
+color=#ffff00
+interval=once
+signal=11
+
+[cpu_usage]
+label= 
+command=scripts/cpu_usage.sh
+interval=5
+
+[memory]
+label=RAM 
+command=scripts/memory.sh
+interval=5
+
+# Root Storage (p3) - /
+[root_storage]
+label=🖴 /:
+command=scripts/storage.sh /
+color=#A6E22E
+interval=60
+
+# Home Storage (p4) - /home
+[home_storage]
+label=🖴 /home:
+command=scripts/storage.sh /home
+color=#66D9EF
+interval=60
+
+[battery]
+command=scripts/battery.sh
+interval=20
+
+[wifi]
+command=scripts/wifi_check.sh
+interval=6
+
+[time]
+label=  
+command=date '+%Y-%m-%d %H:%M:%S'
+color=#FFFFFF
+interval=1
+
+[keyboard]
+command=scripts/kb_layout.sh
+color=#66D9EF
+interval=once
+signal=12
+
+[notification]
+command=scripts/notifications.sh
+color=#66D9EF
+interval=once
+signal=11
+

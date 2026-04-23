@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# i3blocks registers a left-click as button 1
+if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
+    numlockx toggle
+fi
+
+# Read the current state directly from the X server
+# This safely extracts just the word "on" or "off"
+state=$(xset -q | grep "Num Lock" | awk -F "Num Lock:[ ]*" '{print $2}' | awk '{print $1}')
+
+if [[ "$state" == "on" ]]; then
+    echo "NUM ON"
+else
+    echo "NUM OFF"
+fi
