@@ -1,0 +1,19 @@
+#!/bin/bash
+
+target="$1"
+title="Print Screen Tool"
+scrot_path="$HOME/Pictures/Screenshots/screenshot_$(date +%Y%m%d_%H%M%S).png"
+
+case "$target" in
+    screen)
+        magick import -window root "$scrot_path"
+        ;;
+    window)
+        magick import -window "$(xdotool getactivewindow)" "$scrot_path"
+        ;;
+    *)
+        exit 1
+esac
+
+xclip -selection clipboard -t image/png -i "$scrot_path"
+notify-send "$title" "The $target was saved to $scrot_path" -i "$scrot_path"

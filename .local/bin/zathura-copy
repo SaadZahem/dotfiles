@@ -1,0 +1,5 @@
+#!/bin/bash
+
+i3-msg 'fullscreen enable'
+prtsc window
+i3-msg 'fullscreen disable'

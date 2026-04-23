@@ -1,0 +1,54 @@
+Context:
+I am developing a Python 3.11+ command-line tool called pcurl. It acts as a wrapper around the standard curl executable, allowing users to define request templates ("zones") and variable sets ("profiles") to easily construct and execute complex HTTP requests without memorizing long CLI strings.
+
+Core Architecture & Constraints:
+
+    Zero External Dependencies: The script relies purely on the Python standard library.
+
+    Data Storage: It uses TOML for storage, splitting data into ~/.pcurl_profiles.toml and ~/.pcurl_zones.toml. It reads TOML using the built-in tomllib (requiring Python 3.11+) and writes TOML using a custom, minimal, JSON-backed dumper built directly into the script.
+
+    Variable Interpolation: It uses string.Template.safe_substitute to inject variables into zones using $var or ${var} syntax.
+
+    Execution: It constructs a curl list array and executes it via subprocess.run(), ensuring an empty line print() follows the execution.
+
+Entities:
+
+    Profiles: Key-value pairs of variables (e.g., username, password).
+
+        There is always a permanent, implicit default profile.
+
+        Security: If a variable key contains the substrings pass, token, secret, or key, its value is redacted as *** in standard output and logs, but the actual executed curl command securely uses the real value.
+
+    Zones: The structural template of the request. Contains:
+
+        url (Required upon creation)
+
+        method (Defaults to GET)
+
+        headers (List of strings)
+
+        data (String payload)
+
+CLI Interface & Commands (argparse):
+
+    Profile Management: profile [add|delete|list] [name] [-v/--var key=value]
+
+    Zone Management: zone [add|delete|list] [name] [-u/--url] [-X/--method] [-H/--header] [-d/--data]
+
+    Execution Commands (run and post): * Syntax: run [--options] [profile] zone (If one positional argument is provided, the profile defaults to default).
+
+        post behaves identically to run but forces the HTTP method to POST.
+
+        Options:
+
+            -p / --port: Dynamically overrides the port in the final URL.
+
+            -l / --loop <seconds>: Executes the request in an infinite loop with the specified delay.
+
+            -s / --silent: Appends -s to curl and silences standard script output.
+
+            -V / --verbose: Appends -v to curl.
+
+Current Objective:
+(Append your next feature request, bug fix, or documentation task here.)
+
