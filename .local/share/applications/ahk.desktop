@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=AHK
+Exec=wine "/home/szahem/.wine/drive_c/Program Files/AutoHotkey/v2/AutoHotkey64.exe" "%F"
+Type=Application
+MimeType=text/plain;

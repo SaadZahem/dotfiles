@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=SPSS
+Exec=wine "/home/szahem/.wine/drive_c/Program Files/IBM/SPSS/Statistics/27/stats.exe" "%F"
+Type=Application
+MimeType=appliation/x-spss-sav;

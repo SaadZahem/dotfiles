@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=VimPad
+Exec=i3-sensible-terminal -T VimPad -x vim %f
+Type=Application
+MimeType=text/*;
+Icon=vim
+Comment=
+Path=
+Terminal=false
+StartupNotify=false

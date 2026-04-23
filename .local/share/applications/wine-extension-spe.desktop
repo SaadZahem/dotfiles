@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=IBM SPSS Statistics 27.0
+MimeType=application/x-wine-extension-spe;
+Exec=env "WINEPREFIX=/home/szahem/.wine" wine start /ProgIDOpen "SPSS.ExtBundle" %f
+NoDisplay=true
+StartupNotify=true
+Icon=FA0A_stats.0
