@@ -1,0 +1,148 @@
+# i3 config file (v4)
+#
+# Refer to https://i3wm.org/docs/userguide.html for a complete reference!
+
+# Windows and alt keys
+set $mod Mod4
+set $alt Mod1
+
+# Locations
+set $home /home/szahem
+set $config /home/szahem/.config
+
+# Aliases
+set $noid --no-startup-id
+
+# Startup
+
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec $noid dex --autostart --environment i3
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec $noid xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec $noid nm-applet
+
+## Start fusuma to enable touchpad gestures
+exec --no-stratup-id fusuma -d
+
+## Display wallpaper
+exec_always feh --bg-fill $home/Pictures/wallpaper
+
+## Window compositor for fading effect and transparent terminal
+exec_always picom -f 
+
+## Keyboard layout switcher
+exec $noid setxkbmap -model pc105 -layout us
+bindsym $mod+space exec $noid $config/i3blocks/scripts/kb_layout.sh toggle && pkill -RTMIN+12 i3blocks
+
+## Geolocation service
+exec $noid /usr/lib/geoclue-2.0/demos/agent
+
+### Launch CopyQ clipboard manager
+exec $noid copyq
+
+## Start notification server
+exec $noid dunst
+
+
+# Function keys
+set $refresh_i3status killall -SIGUSR1 i3status
+set $refresh_i3blocks pkill -RTMIN+11 i3blocks
+
+# Use pactl to adjust volume in PulseAudio.
+bindsym XF86AudioRaiseVolume exec $noid pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3blocks
+bindsym XF86AudioLowerVolume exec $noid pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3blocks
+bindsym XF86AudioMute exec $noid pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3blocks
+bindsym XF86AudioMicMute exec $noid pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3blocks
+## Screen brightness controls
+
+bindsym XF86MonBrightnessUp exec $noid brightnessctl set 5%+ && $refresh_i3blocks
+bindsym XF86MonBrightnessDown exec $noid brightnessctl set 5%- && $refresh_i3blocks
+
+## Toggle touchpad
+bindsym XF86TouchpadToggle exec $noid $config/i3blocks/scripts/touchpad.sh toggle && $refresh_i3blocks
+
+# Appearance
+set $title_bold "<b>%title</b>"
+set $title_bold_verbose "%class(%instance) <b>%title</b>"
+
+# remove window titles by default but make them bold when they are enabled
+for_window [all] title_format $title_bold, border pixel
+
+# set outer gaps for all workspaces
+# except ws3 where gaps are inner instead of outer
+gaps outer 8
+workspace 3 gaps outer 0
+workspace 3 gaps inner 8
+
+# Font for window titles
+#font pango:monospace 8
+
+# Center window titles
+title_align center
+
+# Try also
+#
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:DejaVu Sans Mono 8
+
+# Draws i3blocks status bar at the bottom of the screen
+bar {
+    position top
+    font pango:monospace 10, FontAwesome 10
+    colors {
+        background #1c1b22
+    }
+
+    status_command i3blocks -c $config/i3blocks/config
+    separator_symbol ":|:"
+
+    workspace_command $config/i3/scripts/workspace.sh
+    workspace_min_width 40
+    strip_workspace_numbers yes
+    tray_padding 8
+    padding 0 8
+}
+
+
+# Behavior
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10:wine"
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# move tiling windows via drag & drop by left-clicking into the title bar,
+# or left-clicking anywhere into the window while holding the floating modifier.
+tiling_drag modifier titlebar
+
+## Default rules for windows and workspaces
+assign [class="firefox"] workspace number $ws5
+assign [class=".exe$"] workspace number $ws10
+assign [instance="qemu"] workspace number $ws10
+
+for_window [class="firefox" instance="Navigator"] border pixel, mark f
+for_window [class="copyq"] floating enable, sticky enable, resize set 600 400, move position center
+for_window [class="Peek"] sticky enable
+for_window [class="Terminator" title="VimPad"] floating enable, resize set 1200 800, move position center
+for_window [class="Terminator" title="FloatShell"] floating enable
+for_window [class="stats.exe" title="Chart Editor"] floating enable
+for_window [class="feh"] floating enable
+for_window [class="claw.exe" title="Claw"] floating disable, fullscreen enable
+
+## key bindings
+include keymap.conf
