@@ -1,0 +1,10 @@
+[Unit]
+Description=Tmux Terminal Multiplexer
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/tmux new-session -s main -d
+ExecStop=/usr/bin/tmux kill-server
+
+[Install]
+WantedBy=default.target
