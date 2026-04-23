@@ -1,0 +1,3 @@
+# Extract all the text of the currently opened pdf file to the clipboard
+map <C-y> exec 'zathura-yank "$FILE"'
+map <C-c> exec zathura-copy
