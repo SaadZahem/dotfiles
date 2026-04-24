@@ -15,7 +15,8 @@ signal=14
 [numlock]
 command=scripts/numlock.sh
 color=#ffaa00
-interval=1
+interval=once
+signal=15
 
 [volume]
 command=scripts/volume.sh
