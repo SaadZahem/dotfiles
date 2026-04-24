@@ -53,21 +53,19 @@ exec $noid dunst
 exec $noid $config/i3/scripts/audio_listener.sh
 
 # Function keys
-set $refresh_i3status killall -SIGUSR1 i3status
-set $refresh_i3blocks pkill -RTMIN+11 i3blocks
 
 # Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec $noid pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3blocks
-bindsym XF86AudioLowerVolume exec $noid pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3blocks
-bindsym XF86AudioMute exec $noid pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3blocks
-bindsym XF86AudioMicMute exec $noid pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3blocks
+bindsym XF86AudioRaiseVolume exec $noid pactl set-sink-volume @DEFAULT_SINK@ +10% && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec $noid pactl set-sink-volume @DEFAULT_SINK@ -10% && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec $noid pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMicMute exec $noid pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+10 i3blocks
 ## Screen brightness controls
 
-bindsym XF86MonBrightnessUp exec $noid brightnessctl set 5%+ && $refresh_i3blocks
-bindsym XF86MonBrightnessDown exec $noid brightnessctl set 5%- && $refresh_i3blocks
+bindsym XF86MonBrightnessUp exec $noid brightnessctl set 5%+ && pkill -RTMIN+13 i3blocks
+bindsym XF86MonBrightnessDown exec $noid brightnessctl set 5%- && pkill -RTMIN+13 i3blocks
 
 ## Toggle touchpad
-bindsym XF86TouchpadToggle exec $noid $config/i3blocks/scripts/touchpad.sh toggle && $refresh_i3blocks
+bindsym XF86TouchpadToggle exec $noid $config/i3blocks/scripts/touchpad.sh toggle && pkill -RTMIN+14 i3blocks
 
 # Appearance
 set $title_bold "<b>%title</b>"

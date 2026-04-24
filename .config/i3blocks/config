@@ -10,7 +10,7 @@ markup=pango
 command=scripts/touchpad.sh
 color=#ff5555
 interval=once
-signal=11
+signal=14
 
 [numlock]
 command=scripts/numlock.sh
@@ -21,13 +21,13 @@ interval=1
 command=scripts/volume.sh
 color=#00bbff
 interval=once
-signal=11
+signal=10
 
 [brightness]
 command=scripts/brightness.sh
 color=#ffff00
 interval=once
-signal=11
+signal=13
 
 [cpu_usage]
 label= 

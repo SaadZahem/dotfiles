@@ -3,5 +3,5 @@
 # Listen to the audio server for events related to sinks (outputs) or cards (hardware)
 # The --line-buffered flag is critical; it forces grep to pass the event instantly
 pactl subscribe | grep --line-buffered -E "sink|card|server" | while read -r line; do
-    pkill -RTMIN+11 i3blocks
+    pkill -RTMIN+10 i3blocks
 done
