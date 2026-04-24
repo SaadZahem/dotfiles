@@ -49,6 +49,8 @@ exec $noid copyq
 ## Start notification server
 exec $noid dunst
 
+## Start audio_listener to update status bar when audio device change
+exec $noid $config/i3/scripts/audio_listener.sh
 
 # Function keys
 set $refresh_i3status killall -SIGUSR1 i3status
