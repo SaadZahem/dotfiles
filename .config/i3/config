@@ -57,6 +57,8 @@ exec $noid $config/i3/scripts/audio_listener.sh
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec $noid pactl set-sink-volume @DEFAULT_SINK@ +10% && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec $noid pactl set-sink-volume @DEFAULT_SINK@ -10% && pkill -RTMIN+10 i3blocks
+bindsym Shift+XF86AudioRaiseVolume exec $noid pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
+bindsym Shift+XF86AudioLowerVolume exec $noid pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute exec $noid pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMicMute exec $noid pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+10 i3blocks
 
