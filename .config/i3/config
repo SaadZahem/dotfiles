@@ -28,7 +28,7 @@ exec $noid xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec $noid nm-applet
 
 ## Start fusuma to enable touchpad gestures
-exec --no-stratup-id fusuma -d
+exec $noid fusuma -d
 
 ## Display wallpaper
 exec_always feh --bg-fill $home/Pictures/wallpaper
