@@ -1,0 +1,6 @@
+#!/usr/bin/crontab
+# Every Sunday at midnight, delete files that has been in the trash can for more than 30 days
+0 0 * * 0 echo "y" | /usr/bin/trash-empty 30
+
+# Every 15 minutes, sync telegram downloads
+*/15 * * * * $HOME/.local/bin/telegram-sync.sh
