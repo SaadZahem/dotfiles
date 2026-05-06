@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=VimPad
-Exec=i3-sensible-terminal -T VimPad -x vim %f
+Exec=i3-sensible-terminal -T VimPad -x vim "%f"
 Type=Application
 MimeType=text/*;
 Icon=vim
