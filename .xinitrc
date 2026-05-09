@@ -53,7 +53,7 @@ fi
 
 case $WM in
     i3)
-        exec i3
+        exec dbus-run-session i3
         ;;
     plasma)
         exec startplasma-x11
