@@ -34,5 +34,5 @@ if [[ "$CAPACITY" -le 20 && "$STATUS" == "Discharging" ]]; then
     fi
 else
     # If the battery is charging or above 20%, delete the state file to reset the trigger
-    test -f "$STATE_FILE" && rm -f "$STATE_FILE"
+    rm -f "$STATE_FILE"
 fi

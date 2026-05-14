@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 1. Right click to open htop
-if [ "$BLOCK_BUTTON" == "3" ]; then
+if [[ "$BLOCK_BUTTON" -eq 3 ]]; then
     terminator -e htop
 fi
 
@@ -14,8 +14,8 @@ echo "$full_text ($used_percent%)" # Line 1: Display
 echo "$full_text" # Line 2: Short text
 
 # 4. Color logic (Outputted as Line 3)
-if [ "$used_percent" -gt 80 ]; then
+if [[ "$used_percent" -gt 80 ]]; then
     echo "#FFA500" # Orange if > 80%
-elif [ "$used_percent" -gt 90 ]; then
+elif [[ "$used_percent" -gt 90 ]]; then
     echo "#FF0000" # Red if > 90%
 fi

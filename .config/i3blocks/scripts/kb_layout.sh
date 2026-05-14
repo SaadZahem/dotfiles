@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 1. If clicked via mouse OR triggered by Win+Space shortcut
-if [[ "$BLOCK_BUTTON" -eq 1 ]] || [[ "$1" == "toggle" ]]; then
+if [[ "$BLOCK_BUTTON" -eq 1 || "$1" == "toggle" ]]; then
     CURRENT_LAYOUT=$(setxkbmap -query | awk '/layout:/ {print $2}')
     
     # Toggle and apply your specific variants

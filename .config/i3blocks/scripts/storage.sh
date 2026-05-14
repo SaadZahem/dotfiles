@@ -5,7 +5,7 @@ TARGET="$1"
 
 # Handle the right mouse click (Button 1)
 if [[ "$BLOCK_BUTTON" -eq 3 ]]; then
-    test "$TARGET" == "/home" && TARGET=$HOME
+    [[ "$TARGET" == "/home" ]] && TARGET=$HOME
     setsid thunar "$TARGET" >/dev/null
 fi
 
