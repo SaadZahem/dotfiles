@@ -105,7 +105,6 @@
 ; (gtk_accel_path "<Actions>/ThunarStandardView/back-alt2" "Back")
 ; (gtk_accel_path "<Actions>/ThunarActionManager/redo" "<Primary><Shift>z")
 ; (gtk_accel_path "<Actions>/ThunarWindow/open-trash" "")
-; (gtk_accel_path "<Actions>/ThunarBookmarks/2b7b8e7ccb6be9ec159f449b28569fd4" "")
 ; (gtk_accel_path "<Actions>/ThunarActionManager/open-in-new-window" "<Primary><Shift>o")
 ; (gtk_accel_path "<Actions>/ThunarWindow/view-statusbar" "")
 ; (gtk_accel_path "<Actions>/ThunarActionManager/open-location" "")
