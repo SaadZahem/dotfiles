@@ -12,3 +12,4 @@ map <C-c> exec zathura-copy
 
 # Open the corresponding vim note
 map i exec 'zathura-vim "$FILE" "$PAGE"'
+map u exec 'zathura-vim "$FILE"'

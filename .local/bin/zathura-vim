@@ -2,15 +2,21 @@
 
 FILE="$1"
 PAGE="$2"
-BASEDIR="~/.local/share/zathura/vimnotes"
+BASEDIR="$HOME/.local/share/zathura/vimnotes"
 
-mkdir -p "$BASEDIR"
-
-# Hashes the file to escape dealing with whitespaces and long file path
+# Hashing to escape dealing with whitespaces and long file path
 HASH=$(echo -n "$FILE" | sha256sum | awk '{print $1}')
 
-# Including the page in the filename to make a distinct note for each page
-TARGET="$BASEDIR/$HASH-$PAGE.txt"
+# Deciding the name of the file
+if [[ -n "$PAGE" ]]; then
+    NAME="$PAGE"
+else
+    # Remove file location, extension, and whitespaces
+    NAME=$(basename "$FILE" .pdf | tr -d '[:space:]')
+fi
+
+mkdir -p "$BASEDIR/$HASH"
+TARGET="$BASEDIR/$HASH/$NAME.md"
 
 # Giving the terminal the title "VimPad" makes it floating and big
 i3-sensible-terminal -T VimPad -x vim "$TARGET"
