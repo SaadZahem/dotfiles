@@ -1,3 +1,11 @@
 # Extract all the text of the currently opened pdf file to the clipboard
+#
+# This script is located in my `.local/bin` and it uses `pdftotext`
 map <C-y> exec 'zathura-yank "$FILE"'
+
+# Take a screenshot of the current page
+#
+# This interacts with i3 to make the window fullscreen
+# Then it uses Magick to capture the screen
+# Then exits fullscreen again
 map <C-c> exec zathura-copy
