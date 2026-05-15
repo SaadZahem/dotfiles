@@ -9,3 +9,6 @@ map <C-y> exec 'zathura-yank "$FILE"'
 # Then it uses Magick to capture the screen
 # Then exits fullscreen again
 map <C-c> exec zathura-copy
+
+# Open the corresponding vim note
+map i exec 'zathura-vim "$FILE" "$PAGE"'

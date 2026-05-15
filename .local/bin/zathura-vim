@@ -1,0 +1,16 @@
+#!/bin/bash
+
+FILE="$1"
+PAGE="$2"
+BASEDIR="~/.local/share/zathura/vimnotes"
+
+mkdir -p "$BASEDIR"
+
+# Hashes the file to escape dealing with whitespaces and long file path
+HASH=$(echo -n "$FILE" | sha256sum | awk '{print $1}')
+
+# Including the page in the filename to make a distinct note for each page
+TARGET="$BASEDIR/$HASH-$PAGE.txt"
+
+# Giving the terminal the title "VimPad" makes it floating and big
+i3-sensible-terminal -T VimPad -x vim "$TARGET"
