@@ -78,6 +78,7 @@ set $title_bold_verbose "%class(%instance) <b>%title</b>"
 
 # remove window titles by default but make them bold when they are enabled
 for_window [all] title_format $title_bold, border pixel
+for_window [class="vlc"] border normal
 
 # set outer gaps for all workspaces
 # except ws3 where gaps are inner instead of outer
