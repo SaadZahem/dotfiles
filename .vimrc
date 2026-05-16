@@ -5,4 +5,9 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
+" 'Just kidding' is the best way to escape insertion mode
 imap jk <Esc>
+
+" Rerender the buffer without losing the current position
+let @r = "mcGVgg0\<Esc>'c"
+
