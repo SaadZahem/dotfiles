@@ -7,6 +7,6 @@ Clone this repo into your home directory.
 Change directory to be inside the repo.
 Then run the following command
 
-    stow .
+    stow --dotfiles .
 
 But make sure to remove/backup any preexisting configurations you already had.
