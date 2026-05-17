@@ -50,7 +50,7 @@ exec $noid copyq
 exec $noid dunst
 
 ## Start audio_listener to update status bar when audio device change
-exec $noid $config/i3/scripts/audio_listener.sh
+exec $noid $config/i3/scripts/audio_listener
 
 # Function keys
 
@@ -109,7 +109,7 @@ bar {
     status_command i3blocks -c $config/i3blocks/i3blocks.conf
     separator_symbol ":|:"
 
-    workspace_command $config/i3/scripts/workspace.sh
+    workspace_command $config/i3/scripts/workspace
     workspace_min_width 40
     strip_workspace_numbers yes
     tray_padding 8
