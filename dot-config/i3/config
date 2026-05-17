@@ -38,7 +38,7 @@ exec_always picom -f
 
 ## Keyboard layout switcher
 exec $noid setxkbmap -model pc105 -layout us
-bindsym $mod+space exec $noid $config/scripts/input-block toggle && pkill -RTMIN+12 i3blocks
+bindsym $mod+space exec $noid $config/i3blocks/scripts/input-block toggle && pkill -RTMIN+12 i3blocks
 
 ## Geolocation service
 exec $noid /usr/lib/geoclue-2.0/demos/agent
@@ -50,7 +50,7 @@ exec $noid copyq
 exec $noid dunst
 
 ## Start audio_listener to update status bar when audio device change
-exec $noid $config/scripts/audio-listener
+exec $noid $config/i3/scripts/audio-listener
 
 # Function keys
 
@@ -67,7 +67,7 @@ bindsym XF86MonBrightnessUp exec $noid brightnessctl set 5%+ && pkill -RTMIN+13 
 bindsym XF86MonBrightnessDown exec $noid brightnessctl set 5%- && pkill -RTMIN+13 i3blocks
 
 ## Toggle touchpad
-bindsym XF86TouchpadToggle exec $noid $config/scripts/touchpad-block toggle && pkill -RTMIN+14 i3blocks
+bindsym XF86TouchpadToggle exec $noid $config/i3blocks/scripts/touchpad-block toggle && pkill -RTMIN+14 i3blocks
 
 ## Watch numlock key and send signals
 bindsym --release Num_Lock exec $noid pkill -RTMIN+15 i3blocks
@@ -109,7 +109,7 @@ bar {
     status_command i3blocks -c $config/i3blocks/i3blocks.conf
     separator_symbol "|"
 
-    workspace_command $config/scripts/workspace
+    workspace_command $config/i3/scripts/workspace
     workspace_min_width 40
     strip_workspace_numbers yes
     tray_padding 8
