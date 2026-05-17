@@ -76,7 +76,8 @@ bindsym --release Num_Lock exec $noid pkill -RTMIN+15 i3blocks
 set $title-bold "<b>%title</b>"
 set $title-bold-verbose "%class(%instance) <b>%title</b>"
 
-set $bar-bgcolor #1c1b22
+set $bar-bgcolor "#1c1b22"
+set $bar-fgcolor "#3e7b83"
 
 # remove window titles by default but make them bold when they are enabled
 for_window [all] title_format $title-bold, border pixel
