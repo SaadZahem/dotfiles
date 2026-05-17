@@ -106,7 +106,7 @@ bar {
         background #1c1b22
     }
 
-    status_command i3blocks -c $config/i3blocks/config
+    status_command i3blocks -c $config/i3blocks/i3blocks.conf
     separator_symbol ":|:"
 
     workspace_command $config/i3/scripts/workspace.sh
