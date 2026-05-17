@@ -38,7 +38,7 @@ exec_always picom -f
 
 ## Keyboard layout switcher
 exec $noid setxkbmap -model pc105 -layout us
-bindsym $mod+space exec $noid $config/i3blocks/scripts/kb_layout.sh toggle && pkill -RTMIN+12 i3blocks
+bindsym $mod+space exec $noid $config/scripts/input-block toggle && pkill -RTMIN+12 i3blocks
 
 ## Geolocation service
 exec $noid /usr/lib/geoclue-2.0/demos/agent
@@ -50,7 +50,7 @@ exec $noid copyq
 exec $noid dunst
 
 ## Start audio_listener to update status bar when audio device change
-exec $noid $config/i3/scripts/audio_listener
+exec $noid $config/scripts/audio-listener
 
 # Function keys
 
@@ -67,17 +67,19 @@ bindsym XF86MonBrightnessUp exec $noid brightnessctl set 5%+ && pkill -RTMIN+13 
 bindsym XF86MonBrightnessDown exec $noid brightnessctl set 5%- && pkill -RTMIN+13 i3blocks
 
 ## Toggle touchpad
-bindsym XF86TouchpadToggle exec $noid $config/i3blocks/scripts/touchpad.sh toggle && pkill -RTMIN+14 i3blocks
+bindsym XF86TouchpadToggle exec $noid $config/scripts/touchpad-block toggle && pkill -RTMIN+14 i3blocks
 
 ## Watch numlock key and send signals
 bindsym --release Num_Lock exec $noid pkill -RTMIN+15 i3blocks
 
 # Appearance
-set $title_bold "<b>%title</b>"
-set $title_bold_verbose "%class(%instance) <b>%title</b>"
+set $title-bold "<b>%title</b>"
+set $title-bold-verbose "%class(%instance) <b>%title</b>"
+
+set $bar-bgcolor #1c1b22
 
 # remove window titles by default but make them bold when they are enabled
-for_window [all] title_format $title_bold, border pixel
+for_window [all] title_format $title-bold, border pixel
 for_window [class="vlc"] border normal
 
 # set outer gaps for all workspaces
@@ -87,29 +89,26 @@ workspace 3 gaps outer 0
 workspace 3 gaps inner 8
 
 # Font for window titles
-#font pango:monospace 8
-
-# Center window titles
-title_align center
-
-# Try also
 #
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 8
+
+# Center window titles
+title_align center
 
 # Draws i3blocks status bar at the bottom of the screen
 bar {
     position top
     font pango:monospace 10, FontAwesome 10
     colors {
-        background #1c1b22
+        background $bar-bgcolor
     }
 
     status_command i3blocks -c $config/i3blocks/i3blocks.conf
-    separator_symbol ":|:"
+    separator_symbol "|"
 
-    workspace_command $config/i3/scripts/workspace
+    workspace_command $config/scripts/workspace
     workspace_min_width 40
     strip_workspace_numbers yes
     tray_padding 8
