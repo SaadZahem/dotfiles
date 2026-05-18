@@ -1,3 +1,12 @@
 #!/bin/sh
 
-dmenu_run -i -nb $1 -nf $2 -sf $1 -sb $2 -p d.menu -fn Hack > ~/.dmenu
+dmenu_run       \
+    -i          \
+    -b          \
+    -nb $1      \
+    -nf $2      \
+    -sf $1      \
+    -sb $2      \
+    -p d.menu   \
+    -fn Hack    \
+> ~/.var/dmenu.log
