@@ -9,9 +9,15 @@ do
 done
 shift $((OPTIND - 1))
 
-color1=$1
-color2=$2
-shift 2
+color1=${1:-#000}
+color2=${2:-#fff}
+
+if [[ $# -ge 2 ]]
+then
+    shift 2
+else
+    shift $#
+fi
 
 "${CMD:-dmenu}" \
     -i          \
