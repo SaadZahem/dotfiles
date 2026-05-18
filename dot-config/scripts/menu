@@ -1,12 +1,25 @@
 #!/bin/sh
 
-"$1"            \
+while getopts "c:p:" opt
+do
+    case "$opt" in
+        c) CMD="$OPTARG" ;;
+        p) PROMPT="$OPTARG" ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+color1=$1
+color2=$2
+shift 2
+
+"${CMD:-dmenu}" \
     -i          \
     -b          \
-    -nb $2      \
-    -nf $3      \
-    -sf $2      \
-    -sb $3      \
-    -p d.menu   \
+    -nb $color1 \
+    -nf $color2 \
+    -sf $color1 \
+    -sb $color2 \
+    -p ${PROMPT:-Dmenu} \
     -fn Hack    \
-
+    "$@"
