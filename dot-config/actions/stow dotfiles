@@ -1,0 +1,1 @@
+cd dotfiles && stow -R --dotfiles .
