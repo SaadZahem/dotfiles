@@ -1,0 +1,7 @@
+#!/bin/sh
+
+(
+    cd ~/.config/actions
+    find . -type f -not -name ".*" -exec cat {} \; | sort | uniq > ~/.cache/shiftx
+)
+cat ~/.cache/shiftx | mymenu | sh &> ~/.var/shiftx
