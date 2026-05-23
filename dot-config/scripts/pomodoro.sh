@@ -1,0 +1,89 @@
+#!/bin/bash
+
+# Configuration
+WORK_MIN=25
+BREAK_MIN=5
+STATE_FILE="/tmp/pomodoro_state"
+
+# Initialize the state file if it doesn't exist (RAM is cleared on reboot)
+# Format: STATUS REMAINING_SECONDS PHASE
+if [[ ! -f "$STATE_FILE" ]]; then
+    echo "STOPPED $((WORK_MIN * 60)) WORK" > "$STATE_FILE"
+fi
+
+read -r STATUS REMAINING PHASE < "$STATE_FILE"
+
+# 1. Handle Mouse Clicks
+case $BLOCK_BUTTON in
+    1) # Left Click: Play / Pause
+        if [[ "$STATUS" == "RUNNING" ]]; then
+            STATUS="PAUSED"
+        elif [[ "$STATUS" == "PAUSED" ]] || [[ "$STATUS" == "STOPPED" ]]; then
+            STATUS="RUNNING"
+        fi
+        ;;
+    3) # Right Click: Hard Reset
+        STATUS="STOPPED"
+        REMAINING=$((WORK_MIN * 60))
+        PHASE="WORK"
+        ;;
+    2) # Middle Click: Skip Phase
+        if [[ "$PHASE" == "WORK" ]]; then
+            PHASE="BREAK"
+            REMAINING=$((BREAK_MIN * 60))
+        else
+            PHASE="WORK"
+            REMAINING=$((WORK_MIN * 60))
+        fi
+        STATUS="STOPPED"
+        ;;
+esac
+
+# 2. Process the Timer Tick
+if [[ "$STATUS" == "RUNNING" ]]; then
+    REMAINING=$((REMAINING - 1))
+    
+    # Phase Complete!
+    if [[ $REMAINING -le 0 ]]; then
+        if [[ "$PHASE" == "WORK" ]]; then
+            PHASE="BREAK"
+            REMAINING=$((BREAK_MIN * 60))
+            notify-send -u critical "🍅 Pomodoro" "Work session complete! Take a break."
+        else
+            PHASE="WORK"
+            REMAINING=$((WORK_MIN * 60))
+            notify-send -u critical "🍅 Pomodoro" "Break over! Back to focus."
+        fi
+        STATUS="STOPPED"
+    fi
+fi
+
+# Save the new state back to RAM
+echo "$STATUS $REMAINING $PHASE" > "$STATE_FILE"
+
+# 3. Format the Output for i3blocks
+MINUTES=$((REMAINING / 60))
+SECONDS=$((REMAINING % 60))
+TIME_STR=$(printf "%02d:%02d" $MINUTES $SECONDS)
+
+# Set colors and icons based on state
+if [[ "$STATUS" == "STOPPED" ]]; then
+    ICON="🍅"
+    COLOR="#777777" # Dim Grey
+elif [[ "$STATUS" == "PAUSED" ]]; then
+    ICON="⏸"
+    COLOR="#EBCB8B" # Yellow
+else
+    if [[ "$PHASE" == "WORK" ]]; then
+        ICON="⏱"
+        COLOR="#BF616A" # Red
+    else
+        ICON="☕"
+        COLOR="#A3BE8C" # Green
+    fi
+fi
+
+# Print to i3blocks: Full text, Short text, Color
+echo "$ICON $TIME_STR"
+echo "$ICON $TIME_STR"
+echo "$COLOR"
