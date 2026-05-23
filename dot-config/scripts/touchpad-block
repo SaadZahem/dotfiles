@@ -3,7 +3,7 @@
 device="ELAN1200:00 04F3:309F Touchpad"
 
 # Handle the mouse click first
-if [[ "$BLOCK_BUTTON" -eq 1 ]] || [[ "$1" == "toggle" ]]; then
+if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
     state=$(xinput list-props "$device" | grep "Device Enabled" | grep -o "[01]$")
     if [[ "$state" -eq 1 ]]; then
         xinput disable "$device"

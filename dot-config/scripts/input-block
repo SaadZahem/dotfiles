@@ -1,7 +1,9 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(dirname "$0")"
+
 # 1. If clicked via mouse OR triggered by Win+Space shortcut
-if [[ "$BLOCK_BUTTON" -eq 1 || "$1" == "toggle" ]]; then
+if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
     LAYOUT=$(setxkbmap -query | awk '/layout:/ {print $2}')
     
     # Toggle and apply your specific variants
@@ -12,5 +14,10 @@ if [[ "$BLOCK_BUTTON" -eq 1 || "$1" == "toggle" ]]; then
     fi
 fi
 
-# 2. Print the current layout to the status bar
-setxkbmap -query | awk '/layout:/ { l=toupper($2); print (length(l)<3 ? l"  " : l) }'
+# 2. Obtain touchpad state
+ICON=" ⌨"
+TP_STATE=$(env -uBLOCK_BUTTON "$SCRIPT_DIR/touchpad-block")
+[[ "$TP_STATE" == "OFF" ]] && ICON="${ICON/ /\"}"
+
+# 3. Print
+setxkbmap -query | awk -v icon="$ICON " '/layout:/ { l=toupper($2); print icon (length(l)<3 ? l"  " : l) }'

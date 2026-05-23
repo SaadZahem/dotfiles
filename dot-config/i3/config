@@ -38,7 +38,7 @@ exec_always picom -f
 
 ## Keyboard layout switcher
 exec $noid setxkbmap -model pc105 -layout us
-bindsym $mod+space exec $noid $config/i3blocks/scripts/input-block toggle && pkill -RTMIN+12 i3blocks
+bindsym $mod+space exec $noid BLOCK_BUTTON=1 $config/i3blocks/scripts/input-block && pkill -RTMIN+12 i3blocks
 
 ## Geolocation service
 exec $noid /usr/lib/geoclue-2.0/demos/agent
@@ -67,7 +67,7 @@ bindsym XF86MonBrightnessUp exec $noid brightnessctl set 5%+ && pkill -RTMIN+13 
 bindsym XF86MonBrightnessDown exec $noid brightnessctl set 5%- && pkill -RTMIN+13 i3blocks
 
 ## Toggle touchpad
-bindsym XF86TouchpadToggle exec $noid $config/i3blocks/scripts/touchpad-block toggle && pkill -RTMIN+14 i3blocks
+bindsym XF86TouchpadToggle exec $noid BLOCK_BUTTON=1 $config/i3blocks/scripts/touchpad-block && pkill -RTMIN+12 i3blocks
 
 ## Watch numlock key and send signals
 bindsym --release Num_Lock exec $noid pkill -RTMIN+15 i3blocks
