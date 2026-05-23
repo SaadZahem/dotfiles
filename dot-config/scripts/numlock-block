@@ -9,8 +9,4 @@ fi
 # This safely extracts just the word "on" or "off"
 state=$(xset -q | grep "Num Lock" | awk -F "Num Lock:[ ]*" '{print $2}' | awk '{print $1}')
 
-if [[ "$state" == "on" ]]; then
-    echo "NUM ON"
-else
-    echo "NUM OFF"
-fi
+printf "%-3s\n" "${state^^}"

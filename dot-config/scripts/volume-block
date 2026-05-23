@@ -6,8 +6,12 @@ volume=$(pamixer --get-volume)
 # Check if muted (returns "true" or "false")
 muted=$(pamixer --get-mute)
 
-if [[ "$muted" == "true" ]]; then
-    echo "MUTE (${volume}%)"
+if [[ "$muted" == "true" || "$volume" -eq 0 ]]; then
+    label="🕨"
+elif [[ "$volume" -gt 99 ]]; then
+    label="🕪"
 else
-    echo "VOL ${volume}%"
+    label="🕩"
 fi
+
+printf "$label %-4s\n" "$volume%"
