@@ -1,10 +1,18 @@
 #!/bin/bash
 
+# Obtain the current state
 TP_ID=$(xinput list | grep -i "touchpad" | grep -oP 'id=\K\d+' | head -n 1)
 state=$(xinput list-props "$TP_ID" | grep "Device Enabled" | awk '{print $4}')
 
+# Toggle the state
+if [[ "$BLOCK_BUTTON" -eq 1 ]]
+then case "$state" in
+    0) xinput enable "$TP_ID" ;;
+    1) xinput disable "$TP_ID" ;;
+esac
+
 # Read and display the current state
-if [[ "$state" -eq 1 ]]
+elif [[ "$state" -eq 1 ]]
 then
     echo "ON "
 else
