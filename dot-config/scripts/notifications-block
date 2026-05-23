@@ -5,7 +5,7 @@ if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
 fi
 
 if [[ "$(dunstctl is-paused)" == "false" ]]; then
-    echo "NOTIF ON"
+    echo " ON"
 else
-    echo "NOTIF OFF"
+    echo "OFF"
 fi
