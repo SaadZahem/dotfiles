@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=IBM SPSS Statistics 27.0
-MimeType=application/x-spss-sav;
-Exec=env "WINEPREFIX=/home/szahem/.wine" wine start /ProgIDOpen "SPSS.DataFile" %f
-NoDisplay=true
-StartupNotify=true
-Icon=FA0A_stats.0
