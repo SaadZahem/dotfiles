@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Mendeley
+Exec=sh -c '$(ls /home/$USER/.local/share/AppImage/mendeley-reference-manager-2.*-x86_64.AppImage | tail -n1) %u'
+Icon=Mendeley
+Type=Application
+Categories=Office;Utility;
+StartupNotify=true
+Terminal=false
+Keywords=Reference;Research;
