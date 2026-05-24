@@ -1,0 +1,1 @@
+xcolor | tr -d '[:space:]' | xclip -selection clipboard
