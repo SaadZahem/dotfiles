@@ -1,25 +1,25 @@
-[citiez]
-url = "http://10.28.47.254:8004/index.php?zone=citiez"
+[amal]
 method = "POST"
+url = "http://10.28.47.254:8004/index.php?zone=citiez"
 data = "auth_user=${username}&auth_pass=${password}&accept=Login"
 
-[faculties]
-url = "http://10.28.175.254:8002/index.php?zone=faculties"
+[med]
 method = "POST"
+url = "http://10.28.175.254:8002/index.php?zone=faculties"
 data = "auth_user=${username}&auth_pass=${password}&accept=Login"
 
 [art]
-url = "http://10.28.31.254:8002/index.php?zone=citiez"
 method = "POST"
+url = "http://10.28.31.254:8002/index.php?zone=faculties"
 data = "auth_user=${username}&auth_pass=${password}&accept=Login"
 
 [eng]
-url = "http://10.28.111.254:8002/index.php?zone=citiez"
 method = "POST"
+url = "http://10.28.111.254:8002/index.php?zone=faculties"
 data = "auth_user=${username}&auth_pass=${password}&accept=Login"
 
 [dent]
-url = "http://10.29.63.254:8002/index.php?zone=citiez"
 method = "POST"
+url = "http://10.29.63.254:8002/index.php?zone=faculties"
 data = "auth_user=${username}&auth_pass=${password}&accept=Login"
 

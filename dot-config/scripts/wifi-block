@@ -5,7 +5,7 @@ label="  "
 
 # 1. Handle Clicks: If you left-click ($BLOCK_BUTTON = 1), send notification
 if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
-    notify-send "$INTERFACE" "$(pcurl post citiez --silent)"
+    notify-send "$INTERFACE" "$(pcurl post amal --silent)"
 fi
 
 # 2. Check Connection
