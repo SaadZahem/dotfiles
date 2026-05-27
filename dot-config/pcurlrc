@@ -1,19 +1,19 @@
 # vim: ft=yaml
 
-command: curl -sLX $method "http://$domain:$port/index.php?zone=$zone" -d "accept=Login&auth_user=$email" --data-urlencode "auth_pass@${pword}"
+curl: >
+  http://$domain:$port/index.php?zone=$zone
+  -d "accept=Login&auth_user=$email"
+  --data-urlencode "auth_pass@$pword"
+  $extra
 
-defaults:
-  method: POST
+global:
   port: 8002
   zone: faculties
+  email: szahem@std.mans.edu.eg
+  pword: /home/$USER/mnt/pwords/uni
 
-profiles:
-  default: szahem
-  szahem:
-    email: szahem@std.mans.edu.eg
-    pword: /home/$USER/mnt/pwords/uni
-
-zones:
+# Maps SSID to local settings
+ssid:
   WE12B676: test
   freewifi: amal
   MU_cities amal: amal
@@ -23,7 +23,7 @@ zones:
   Dent-Students: dent
   AGR_Students: agr
 
-requests:
+local:
   test:
     domain: localhost
     port: 8080

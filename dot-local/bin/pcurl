@@ -4,19 +4,20 @@ INTERFACE=wlp1s0
 PCURLRC=~/.config/pcurlrc
 
 ssid=$(iw dev "$INTERFACE" link | grep 'SSID' | awk '{$1=""; print $0}' | xargs)
-config=$(cat "$PCURLRC" | jaq -c --from yaml)
+contents=$(jaq -c --from yaml < "$PCURLRC" .)
+settings=$(jaq -c <<< "$contents" ".local[.ssid[\"$ssid\"]]")
 
-get() {
-    export $1="$(echo "$config" | jaq -r "$2")"
-}
+if [[ "$settings" == "null" ]]
+then
+    echo "pcurl: couldn't find suitable settings for '$ssid'" >&2
+    exit 1
+fi
 
-get cmd .command
-get email ".profiles[.profiles.default].email"
-get pword ".profiles[.profiles.default].pword"
+for attr in domain port zone email pword
+do
+    export $attr=$(jaq -r <<< "$settings"  ".$attr")
+    [[ "${!attr}" == "null" ]] && export $attr=$(jaq -r <<< "$contents" ".global.$attr")
+done
 
-get method ".requests[.zones[\"$ssid\"]].method // .defaults.method"
-get domain ".requests[.zones[\"$ssid\"]].domain // .defaults.domain"
-get port ".requests[.zones[\"$ssid\"]].port // .defaults.port"
-get zone ".requests[.zones[\"$ssid\"]].zone // .defaults.zone"
-
-echo $cmd | envsubst | sh
+export extra=$@
+echo curl $(jaq -r --from yaml < "$PCURLRC" .curl) | envsubst
