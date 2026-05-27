@@ -27,6 +27,3 @@ news.version=3.4.2
 #include solarized-light-256.theme
 #include no-color.theme
 
-context.study.read=project:study.go
-context.study.write=project:study.go
-context=study
