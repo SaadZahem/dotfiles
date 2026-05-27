@@ -14,6 +14,7 @@ PS1='[\u@\h \W]\$ '
 export PATH="$HOME/.local/bin:$PATH"
 export EDITOR=/usr/bin/vim
 export TERMINAL=terminator
+export PAGER=less
 export WM=i3
 
 # Locations I use
@@ -30,6 +31,12 @@ alias sxfce='WM=xfce startx'
 alias edit='$EDITOR $1'
 alias tt=taskwarrior-tui
 alias restore3='i3-resurrect restore -w 3'
-alias pcurlloop='pcurl post citiez -l 6 &>/dev/null &'
-alias until='while true; do $1 && break; done'
-alias forever='while true; do $2; sleep $1; done'
+
+# My shell functions
+pcurlloop() {
+    date
+    pcurl -s | sh
+    echo
+    sleep ${1:-6}
+    pcurlloop $1
+}
