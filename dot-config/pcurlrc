@@ -1,0 +1,41 @@
+# vim: ft=yaml
+
+command: curl -sLX $method "http://$domain:$port/index.php?zone=$zone" -d "accept=Login&auth_user=$email" --data-urlencode "auth_pass@${pword}"
+
+defaults:
+  method: POST
+  port: 8002
+  zone: faculties
+
+profiles:
+  default: szahem
+  szahem:
+    email: szahem@std.mans.edu.eg
+    pword: /home/$USER/mnt/pwords/uni
+
+zones:
+  WE12B676: test
+  freewifi: amal
+  MU_cities amal: amal
+  MED-Students: med
+  Art_Students: art
+  ENG-Students: eng
+  Dent-Students: dent
+  AGR_Students: agr
+
+requests:
+  test:
+    domain: localhost
+    port: 8080
+  amal:
+    domain: 10.28.47.254
+    port: 8004
+    zone: citiez
+  med:
+    domain: 10.28.175.254
+  art:
+    domain: 10.28.31.254
+  eng:
+    domain: 10.28.111.254
+  dent:
+    domain: 10.29.63.254

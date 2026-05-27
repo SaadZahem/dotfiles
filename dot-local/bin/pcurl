@@ -1,1 +1,22 @@
-/home/szahem/dev/goto/local-bin/pcurl_gemini.py
+#!/usr/bin/env bash
+
+INTERFACE=wlp1s0
+PCURLRC=~/.config/pcurlrc
+
+ssid=$(iw dev "$INTERFACE" link | grep 'SSID' | awk '{$1=""; print $0}' | xargs)
+config=$(cat "$PCURLRC" | jaq -c --from yaml)
+
+get() {
+    export $1="$(echo "$config" | jaq -r "$2")"
+}
+
+get cmd .command
+get email ".profiles[.profiles.default].email"
+get pword ".profiles[.profiles.default].pword"
+
+get method ".requests[.zones[\"$ssid\"]].method // .defaults.method"
+get domain ".requests[.zones[\"$ssid\"]].domain // .defaults.domain"
+get port ".requests[.zones[\"$ssid\"]].port // .defaults.port"
+get zone ".requests[.zones[\"$ssid\"]].zone // .defaults.zone"
+
+echo $cmd | envsubst | sh
