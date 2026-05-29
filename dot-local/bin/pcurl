@@ -27,4 +27,12 @@ do
 done
 
 export extra=$@
-echo curl $(jaq -r --from yaml < "$PCURLRC" .curl) | envsubst
+cmd=$(echo curl $(jaq -r --from yaml < "$PCURLRC" .curl) | envsubst)
+
+# env dry=1 pcurl: prints the command without executing it
+if [[ -n "$dry" ]]
+then
+    echo $cmd
+else
+    exec sh -c "$cmd"
+fi
