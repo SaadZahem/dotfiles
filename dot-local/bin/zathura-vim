@@ -11,8 +11,11 @@ HASH=$(echo -n "$FILE" | sha256sum | awk '{print $1}')
 if [[ -n "$PAGE" ]]; then
     NAME="$PAGE"
 else
-    # Remove file location, extension, and whitespaces
-    NAME=$(basename "$FILE" .pdf | tr -d '[:space:]')
+    # Normalizing the filename
+    #
+    # Remove file location, extension, whitespaces, and ampersand
+    # Keeping the '&' in the file name causes an error
+    NAME=$(basename "$FILE" .pdf | tr -d '[:space:]&')
 fi
 
 mkdir -p "$BASEDIR/$HASH"
