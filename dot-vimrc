@@ -9,7 +9,7 @@ set softtabstop=4
 imap jk <Esc>
 
 " Rerender the buffer without losing the current position
-let @r = "mcGVgg0\<Esc>'c"
+let @r = "m0GVgg0\<Esc>'0"
 
 " Map Ctrl+C in visual mode to copy exact selection to system clipboard
 vnoremap <C-c> y:call system("xclip -selection clipboard", @")<CR>
