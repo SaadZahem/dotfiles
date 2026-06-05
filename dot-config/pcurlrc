@@ -1,9 +1,9 @@
 # vim: ft=yaml
 
 curl: >
-  http://$domain:$port/index.php?zone=$zone
+  "http://$domain:$port/index.php?zone=$zone"
   -d "accept=Login&auth_user=$email"
-  --data-urlencode "auth_pass@$pword"
+  --data-urlencode "auth_pass=$(cat $pword)"
   $extra
 
 global:
@@ -16,7 +16,7 @@ global:
 ssid:
   WE12B676: test
   freewifi: amal
-  MU_cities amal: amal
+  MU_Cities amal: amal
   MED-Students: med
   Art_Students: art
   ENG-Students: eng
