@@ -1,0 +1,3 @@
+[submodule "dot-vim/pack/plugins/start/vim-sile"]
+	path = dot-vim/pack/plugins/start/vim-sile
+	url = https://github.com/sile-typesetter/vim-sile.git
