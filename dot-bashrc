@@ -34,9 +34,11 @@ alias restore3='i3-resurrect restore -w 3'
 
 # My shell functions
 pcurlloop() {
-    date
-    pcurl -s
-    echo
-    sleep ${1:-6}
-    pcurlloop $1
+    while true
+    do
+        date
+        pcurl -s
+        echo
+        sleep ${1:-6}
+    done
 }
