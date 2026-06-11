@@ -15,3 +15,9 @@ let @r = "m0GVgg0\<Esc>'0"
 
 " Map Ctrl+C in visual mode to copy exact selection to system clipboard
 vnoremap <C-c> y:call system("xclip -selection clipboard", @")<CR>
+
+" Automatically compile SILE documents on save in a clean environment
+augroup SileCompile
+  autocmd!
+  autocmd BufWritePost *.sil silent execute "!cd " . shellescape(expand('%:p:h')) . " && env -u LUA_PATH -u LUA_CPATH -u LUA_INIT sile " . shellescape(expand('%:t')) . " > /dev/null 2>&1" | redraw!
+augroup END
