@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 pdftotext "$1" - | xclip -selection clipboard
 notify-send "Zathura" "Lecture text extracted to clipboard!"

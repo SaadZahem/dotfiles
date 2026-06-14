@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # i3blocks registers a left-click as button 1
 if [[ "$BLOCK_BUTTON" -eq 1 ]]; then

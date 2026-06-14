@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # Get first snapshot
 read -r _ u1 n1 s1 i1 io1 ir1 sir1 st1 g1 gn1 < /proc/stat

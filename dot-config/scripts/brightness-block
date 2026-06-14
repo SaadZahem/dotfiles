@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # The -m flag formats the output as a comma-separated list
 # awk extracts the 4th column, which is the exact percentage (e.g., 50%)

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # 1. Right click to open htop
 if [[ "$BLOCK_BUTTON" -eq 3 ]]; then

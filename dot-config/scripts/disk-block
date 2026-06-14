@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # Read the target directory passed from the i3blocks config
 TARGET="$1"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
     dunstctl set-paused toggle

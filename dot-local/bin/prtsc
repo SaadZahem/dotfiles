@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 target="$1"
 title="Print Screen Tool"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # Get the current volume as a clean integer (e.g., 50)
 volume=$(pamixer --get-volume)

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 INTERFACE=wlp1s0
 PCURLRC=${PCURLRC:-~/.config/pcurlrc}

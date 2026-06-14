@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 i3-msg 'fullscreen enable'
 prtsc window

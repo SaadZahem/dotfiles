@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # Listen to the audio server for events related to sinks (outputs) or cards (hardware)
 # The --line-buffered flag is critical; it forces grep to pass the event instantly

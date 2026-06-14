@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 TELEGRAM_DIR="$HOME/Downloads/Telegram Desktop"
 TGSYNC_DIR="$HOME/mnt/tgsync"

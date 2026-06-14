@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # Obtain the current state
 TP_ID=$(xinput list | grep -i "touchpad" | grep -oP 'id=\K\d+' | head -n 1)
