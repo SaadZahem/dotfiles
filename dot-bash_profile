@@ -1,6 +1,7 @@
-# vim: ft=sh
 #
 # ~/.bash_profile
 #
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
+
+# vim: ft=sh
