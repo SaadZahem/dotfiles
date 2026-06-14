@@ -101,7 +101,7 @@ title_align center
 # Draws i3blocks status bar at the bottom of the screen
 bar {
     position top
-    font pango:monospace 10, FontAwesome 10
+    font pango:Book 10
     colors {
         background $bar-bgcolor
     }
@@ -112,7 +112,7 @@ bar {
     workspace_command $config/i3/scripts/workspace
     workspace_min_width 40
     strip_workspace_numbers yes
-    tray_padding 8
+    tray_padding 4
     padding 0 8
 }
 
