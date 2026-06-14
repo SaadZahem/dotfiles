@@ -1,21 +1,23 @@
 #!/usr/bin/env sh
 
-INTERFACE=wlp1s0
-label=" "
+INTERFACE="${INTERFACE:-wlp1s0}"
+LABEL="${LABEL:- }"
 
 # 1. Handle Clicks: If you left-click ($BLOCK_BUTTON = 1), send notification
-if [[ "$BLOCK_BUTTON" -eq 1 ]]; then
+if [[ "$BLOCK_BUTTON" -eq 1 ]]
+then
     notify-send "$INTERFACE" "$(pcurl -sL)"
 fi
 
 # 2. Check Connection
-SSID=$(iw dev "$INTERFACE" link | grep 'SSID' | awk '{$1=""; print $0}')
+SSID=$(iw dev "$INTERFACE" link | grep 'SSID' | cut -c8-)
 
-if [[ -z "$SSID" ]]; then
-    echo "<span color='#FF0000'>$label Disconnected</span>"
-elif curl -s --head --request GET http://www.google.com -m 1 | grep "200 OK" >/dev/null; then
-    echo "<span color='#00FF00'>$label $SSID</span>"
+if [[ -z "$SSID" ]]
+then
+    echo "<span color='#FF0000'>$LABEL Disconnected</span>"
+elif curl -sIXGET http://www.google.com -m 1 | grep "200 OK" >/dev/null
+then
+    echo "<span color='#00FF00'>$LABEL $SSID</span>"
 else
-    echo "<span color='#FFFF00'>$label $SSID</span>"
+    echo "<span color='#FFFF00'>$LABEL $SSID</span>"
 fi
-

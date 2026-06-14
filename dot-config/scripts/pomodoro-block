@@ -3,7 +3,8 @@
 # Configuration
 WORK_MIN=25
 BREAK_MIN=5
-STATE_FILE="/tmp/pomodoro_state"
+STATE_FILE="${STATE_FILE:-/tmp/pomodoro_state}"
+EXIT_CODE=0
 
 # Initialize the state file if it doesn't exist (RAM is cleared on reboot)
 # Format: STATUS REMAINING_SECONDS PHASE
@@ -48,11 +49,15 @@ if [[ "$STATUS" == "RUNNING" ]]; then
         if [[ "$PHASE" == "WORK" ]]; then
             PHASE="BREAK"
             REMAINING=$((BREAK_MIN * 60))
-            notify-send -u critical "🍅 Pomodoro" "Work session complete! Take a break."
+            EXIT_CODE=33
+            notify-send -u critical "🍅 Pomodoro"\
+                "Work session complete! Take a break."
         else
             PHASE="WORK"
             REMAINING=$((WORK_MIN * 60))
-            notify-send -u critical "🍅 Pomodoro" "Break over! Back to focus."
+            EXIT_CODE=33
+            notify-send -u critical "🍅 Pomodoro"\
+                "Break over! Back to focus."
         fi
         STATUS="STOPPED"
     fi
@@ -69,7 +74,7 @@ TIME_STR=$(printf "%02d:%02d" $MINUTES $SECONDS)
 # Set colors and icons based on state
 if [[ "$STATUS" == "STOPPED" ]]; then
     ICON="🍅"
-    COLOR="#777777" # Dim Grey
+    COLOR="$color" # use default
 elif [[ "$STATUS" == "PAUSED" ]]; then
     ICON="⏸"
     COLOR="#EBCB8B" # Yellow
@@ -87,3 +92,4 @@ fi
 echo "$ICON $TIME_STR"
 echo "$ICON $TIME_STR"
 echo "$COLOR"
+exit "$EXIT_CODE"

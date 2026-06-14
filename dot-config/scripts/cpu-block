@@ -21,4 +21,4 @@ usage=$(awk -v pi="$prev_idle" -v pt="$prev_total" -v ni="$idle" -v nt="$total" 
         else printf "%.2f", (1 - diff_idle / diff_total) * 100
     }')
 
-echo " $usage%"
+echo "$usage%"

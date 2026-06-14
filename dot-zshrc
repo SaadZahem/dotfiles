@@ -1,3 +1,4 @@
+# This saves the need to redefine aliases
 source ~/.bashrc
 
 # Setting up autocompletion

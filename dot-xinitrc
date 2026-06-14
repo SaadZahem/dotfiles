@@ -17,7 +17,7 @@ sysmodmap="$xinitdir/.Xmodmap"
 # merge in defaults and keymaps
 
 if [ -f "$sysresources" ]; then
-    if [ -x /usr/bin/cpp ] ; then
+    if [ -x /usr/bin/cpp ]; then
         "$xrdb" -merge "$sysresources"
     else
         "$xrdb" -nocpp -merge "$sysresources"
@@ -52,16 +52,10 @@ fi
 # The logic switch
 
 case $WM in
-    i3)
-        exec dbus-run-session i3
-        ;;
-    plasma)
-        exec startplasma-x11
-        ;;
-    xfce)
-        exec startxfce4
-	    ;;
-    *)
+    (i3) exec dbus-run-session i3 ;;
+    (plasma) exec startplasma-x11 ;;
+    (xfce) exec startxfce4 ;;
+    (*)
         echo "[[ERROR]]: \$WM should be one of the following: i3, plasma, xfce"
         ;;
 esac
