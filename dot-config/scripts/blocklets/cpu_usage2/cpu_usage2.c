@@ -117,6 +117,11 @@ int main(int argc, char *argv[])
 
   old_total = get_usage(&old_used);
 
+  // display basal usage on restart
+  display(label, 100.0D * (old_used) / (old_total),
+          warning, critical, decimals);
+  fflush(stdout);
+
   while (1) {
     ulli used;
     ulli total;
