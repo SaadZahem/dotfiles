@@ -10,7 +10,9 @@ vim.keymap.set('i', 'jk', '<Esc>')
 
 -- For conciseness
 local opts = { noremap = true, silent = true }
-local function cmd(cmd) return '<cmd>' .. cmd .. '<CR>' end
+local function cmd(command)
+  return '<cmd>' .. command .. '<CR>'
+end
 
 -- save file
 vim.keymap.set('n', '<C-s>', cmd 'w', opts)
