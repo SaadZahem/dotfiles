@@ -27,9 +27,11 @@ alias splasma='WM=plasma startx'
 alias sxfce='WM=xfce startx'
 
 # Personalized aliases
+alias c=clear
 alias edit='$EDITOR $1'
-alias tt=taskwarrior-tui
 alias restore3='i3-resurrect restore -w 3'
+alias rr=ranger
+alias tt=taskwarrior-tui
 
 # My shell functions
 pcurlloop() {
@@ -41,4 +43,14 @@ pcurlloop() {
         sleep ${1:-6}
     done
 }
+orphans(){
+    for pack in $(pacman -Qdtq)
+    do
+        pacman -Ss "^$pack$"
+    done
+}
+showpack() {
+    pamac info $1 | rg "Required|Optional|Depends"
+}
+
 # vim: ft=sh
