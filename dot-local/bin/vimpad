@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+FILE="$*"
+i3-sensible-terminal -T VimPad -x vim "'$FILE'"
