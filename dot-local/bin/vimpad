@@ -1,4 +1,9 @@
 #!/usr/bin/env sh
 
 FILE="$*"
-i3-sensible-terminal -T VimPad -x vim "'$FILE'"
+if [[ -n "$FILE" ]]
+then
+    i3-sensible-terminal -T VimPad -x vim "'$FILE'"
+else
+    i3-sensible-terminal -T VimPad -x vim
+fi
