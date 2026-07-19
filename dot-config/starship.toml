@@ -1,6 +1,14 @@
-format = "$directory$git_branch$git_status$cmd_duration\n$character"
+format = "$directory$package$git_branch$git_status$python$cmd_duration\n$character"
 
 [character]
 success_symbol = "[❯](bold green)"
 error_symbol = "[❯](bold red)"
 vicmd_symbol = "[❮](bold cyan)"
+
+[package]
+# without symbol
+format = 'is [$version]($style) '
+
+[python]
+# without python version
+format = "[$symbol(\\($virtualenv\\))]($style) "

@@ -1,3 +1,78 @@
+[alias]
+    # Descriptive aliases
+
+    ; list aliases or contributors
+    aliases=!git config -l | grep ^alias | cut -c 7-
+    top = !git log --format=format:%an | sort | uniq -c | sort -r | head -n 20
+    contributors = shortlog --summary --numbered
+
+    ; verbose yet clean project info: logs, status, tags, branches, remotes, and diffs
+    oneline = log --pretty=oneline -n 20 --graph --abbrev-commit
+	graph = log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n"
+    ll = log --color --decorate --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an (%G?)>%Creset' --abbrev-commit
+    ss = status -s
+    tt = tag -l
+	bb = branch -a
+	rr = remote -v
+    dd = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+    ndiff = !"d() { git diff --patch-with-stat HEAD~$1..HEAD -- $2; }; git diff-index --quiet HEAD -- || clear; d"
+    mdiff = "!f() { git stash | head -1 | grep -q 'No local changes to save'; x=$?; git merge --no-commit $1 &>/dev/null; git add -u &>/dev/null; git diff --staged; git reset --hard &>/dev/null; test $x -ne 0 && git stash pop &>/dev/null; }; f"
+
+    ; find commit by message or source code, then find tag or branch containing the comment
+    fgrep = log --pretty=format:'%C(yellow)%h	%Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep
+    fstring = log --pretty=format:'%C(yellow)%h	%Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S
+    ft = describe --always --contains
+    fb = branch -a --contains
+
+    # Action-taking aliases
+
+    ; stashing moving around
+    go = "!f() { git checkout -b \"$1\" 2>/dev/null || git checkout \"$1\"; }; f"
+    goes = "!f() { git stash; git checkout \"$1\"; git stash $2; }; f"
+
+    ; staging and commiting
+    aa = add --all
+    ca = !git add --all && git commit -av
+    amend = commit --amend --reuse-message=HEAD
+    edit = commit --amend --only
+
+    ; unstaging and uncommiting
+    unstage = !git restore --staged "${1:-.}"
+    undo = reset HEAD^ --mixed
+
+    ; merging and cleaning
+    ff = merge --ff-only
+    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d; git remote -v update -p"
+
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+    remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold # line info
+	old = red # deletions
+	new = green # additions
+[color "status"]
+	added = green
+	changed = cyan
+    untracked = yellow
+
+[pull]
+    ff = only
+[diff]
+	renames = copies
+[merge]
+    conflictStyle = diff3
+    log = true
+[apply]
+    whitespace = fix
+[commit]
+    verbose = true
+[help]
+    autocorrect = 1
+
 [user]
 	email = saadzahem7@gmail.com
 	name = SaadZahem
