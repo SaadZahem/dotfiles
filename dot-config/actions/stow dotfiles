@@ -1,1 +1,1 @@
-cd dotfiles && stow -R --dotfiles .
+env --chdir=dotfiles stow -R --dotfiles .
