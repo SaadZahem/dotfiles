@@ -17,26 +17,35 @@ export PAGER=less
 export WM=i3
 
 # Locations I use
+
 export WINEPREFIX="$HOME/.wine"
 export C="$WINEPREFIX/drive_c/"
 export TELEGRAM_DESKTOP="$HOME/Downloads/Telegram Desktop/"
 
 # Starting window manager of choice
+
 alias si3='WM=i3 startx'
 alias splasma='WM=plasma startx'
 alias sxfce='WM=xfce startx'
 
 # Personalized aliases
+
 alias c=clear
 alias edit='$EDITOR $1'
 alias restore3='i3-resurrect restore -w 3'
 alias pp="uv version --bump"
-alias rr=ranger
 alias tt=taskwarrior-tui
 alias vv='source .venv/bin/activate'
-alias amend="git commit --amend --all"
 
 # My shell functions
+
+rr() {
+    file=/tmp/rr
+    ranger --choosedir=$file $*
+    dir=$(cat $file)
+    cd $dir
+    rm $file
+}
 pcurlloop() {
     while true
     do
