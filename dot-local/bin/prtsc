@@ -11,6 +11,9 @@ case "$target" in
     window)
         magick import -window "$(xdotool getactivewindow)" "$scrot_path"
         ;;
+    part)
+        magick import "$scrot_path"
+        ;;
     *)
         exit 1
 esac
