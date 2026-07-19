@@ -8,7 +8,9 @@ set shiftwidth=4
 set softtabstop=4
 
 " 'Just kidding' is the best way to escape insertion mode
+" Added kj because I mistype a lot
 imap jk <Esc>
+imap kj <Esc>
 
 " Rerender the buffer without losing the current position
 let @r = "m0GVgg0\<Esc>'0"
