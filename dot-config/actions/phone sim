@@ -1,0 +1,1 @@
+summon qutebrowser localhost:8080; i3-msg floating enable, resize set width 362, resize set height 737

@@ -1,0 +1,29 @@
+#!/bin/sh
+
+while getopts "c:" opt
+do
+    case "$opt" in
+        c) CLASS="$OPTARG" ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+CLASS=${CLASS:-$1}
+ARGS=$*
+currently_focused=$(xdotool getwindowfocus)
+i3-msg exec "$ARGS"
+
+while true
+do
+    until [[ "$currently_focused" != "$(xdotool getwindowfocus)" ]]
+    do
+        sleep 0.1
+    done
+
+    currently_focused=$(xdotool getwindowfocus)
+
+    if [[ "$(xdotool getwindowclassname $currently_focused)" = "$CLASS" ]]
+    then
+        break
+    fi
+done
