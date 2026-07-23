@@ -35,6 +35,7 @@
     ca = !git add --all && git commit -av
     amend = commit --amend --reuse-message=HEAD
     edit = commit --amend --only
+    bump = "!f() { git tag \"v$(uv version --bump $1 | tail -n1 | awk '{print $NF}')\"; }; f"
 
     ; unstaging and uncommiting
     unstage = !git restore --staged "${1:-.}"
