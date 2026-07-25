@@ -15,6 +15,10 @@ do
     name=$(basename "$file" ".$suffix")
 
     ln -sf "$file" "$TGSYNC_DIR/$suffix/$name"
+    if [[ "$suffix" =~ "mp3|m4a" ]]; then
+        ln -sf "$file" "$TGSYNC_DIR/audio/$name"
+    fi
+
     notify-send "Telegram Sync" "Linked $suffix: $file"
 done
 
