@@ -101,7 +101,7 @@ title_align center
 # Draws i3blocks status bar at the bottom of the screen
 bar {
     position top
-    font pango:Book 10
+    font pango:DejaVu Serif Condensed 10
     colors {
         background $bar-bgcolor
     }
