@@ -30,9 +30,9 @@ alias sxfce='WM=xfce startx'
 
 # Personalized aliases
 
-alias c=clear
 alias edit='$EDITOR $1'
 alias restore3='i3-resurrect restore -w 3'
+alias hh="less ~/.zsh_history"
 alias pp="uv version --bump"
 alias tt=taskwarrior-tui
 alias vv='source .venv/bin/activate'
