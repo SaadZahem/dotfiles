@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Path to your list
+LIST_FILE="$HOME/.config/rofi/unicode_symbols.txt"
+
+# Launch rofi in grid mode
+SELECTED=$(rofi -dmenu \
+    -i \
+    -p "Insert Symbol" \
+    -theme-str 'listview { columns: 1; lines: 8; }' \
+    -theme-str 'window { width: 35%; }' \
+    < "$LIST_FILE")
+
+# Exit if nothing selected
+[ -z "$SELECTED" ] && exit 0
+
+# Extract the character (first character before space)
+CHAR=$(echo "$SELECTED" | awk '{print $1}')
+
+# Paste character directly into active window using xdotool
+xdotool type --clearmodifiers "$CHAR"
