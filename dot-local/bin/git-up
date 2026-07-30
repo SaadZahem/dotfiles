@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# git up [major|minor|patch] - amends the last commit with updated version in both pyproject.toml and uv.lock
+test -n "$1" && uv version --bump $1 && git amend -a
+
+# git up - creates or moves the corresponding git tag onto the last commit
+git tag -f "v$(uv version | tail -n 1 | awk '{print $NF}')"
