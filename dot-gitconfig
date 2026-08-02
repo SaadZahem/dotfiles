@@ -28,7 +28,7 @@
 
     ; stashing moving around
     go = "!f() { git checkout -b \"$1\" 2>/dev/null || git checkout \"$1\"; }; f"
-    goes = "!f() { git stash; git checkout \"$1\"; git stash $2; }; f"
+    goes = "!f() { git stash; git go \"$1\"; git stash pop; }; f"
 
     ; staging and commiting
     aa = add --all
