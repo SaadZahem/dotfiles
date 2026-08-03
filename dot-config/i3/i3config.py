@@ -94,6 +94,11 @@ km.bind("$mod+Control+v", "split v")
 km.bind("$mod+f", "fullscreen toggle")
 km.bind("$mod+Shift+f", "floating toggle")
 km.bind("$mod+Shift+t", "sticky toggle")
+km.bind(
+    "$mod+y",
+    "exec $noid bash -c 'yt-dlp --recode-video mp4 -P ~/Downloads \"$(xclip -o -selection clipboard)\""
+    " && notify-send yt-dlp 'Download finished!' || notify-send -u critical yt-dlp 'Download failed!'",
+)
 
 
 # scratchpad
