@@ -21,4 +21,4 @@ CHAR=$(echo "$SELECTED" | awk '{print $1}')
 xdotool type --clearmodifiers "$CHAR"
 
 # Sometimes that doesn't work. Therefore, also copy to the clipboard
-echo "$CHAR" | xclip -selection clipboard
+echo -n "$CHAR" | xclip -selection clipboard
