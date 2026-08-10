@@ -160,9 +160,9 @@ km.bind(
     "$mod+d",
     "exec $noid $config/i3/scripts/menu -c dmenu_run -p Run $bar-bgcolor $bar-fgcolor &> $home/.var/dmenu.log",
 )
-km.bind("$mod+Shift+d", "exec $noid networkmanager_dmenu")
+km.bind("$mod+c", "exec $noid networkmanager_dmenu")
 km.bind(
-    "$mod+c",
+    "$mod+Shift+d",
     "exec j4-dmenu-desktop --dmenu=\"$config/i3/scripts/menu -p Run '$bar-bgcolor' '$bar-fgcolor'\" &> $home/.var/dmenu.log",
 )
 
