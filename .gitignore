@@ -1,0 +1,3 @@
+# Python (i3 config generator, etc.)
+__pycache__/
+*.py[cod]
