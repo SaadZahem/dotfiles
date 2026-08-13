@@ -1,0 +1,20 @@
+I used to have problems with my mic since I switched to linux.
+It was muted at the software level.
+I have tried all the quircks and nothing worked.
+
+I asked a powerfull AI agent to troubleshoot it and it found the fix.
+It also generated a document describing the symptom, diagnosis, and the fix.
+
+The AI agent is unavailable at the moment.
+The fix still needs follow up.
+
+1. The document states that the fix persists after reboot but it didn't.
+2. The fix was only tested in the terminal. When I entered an actual meeting, the mic was unavailable.
+3. When I allow a program to use my mic, the terminal-based test stopps working saying that the mic is claimed by some other application.
+
+## My expectations
+
+1. Explanation why the documented fix worked initially
+2. Why the fix didn't persist after reboot
+3. Why applications don't seem to pick the mic
+
