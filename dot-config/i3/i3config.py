@@ -259,12 +259,13 @@ def border():
 def game():
     with km.mode("$mod+g", "game"):
         workspace()
-        km.bind("p", "exec \"xdotool key --window '$(xdotool getactivewindow)' Pause\"")
-        km.bind("q", "exec xdotool key --delay 50 Pause Pause")
-        km.bind(
-            "i",
-            'exec $noid i3-input -F \'exec notify-send "%s" "$(xdotool key --delay %s 2>&1)"\' -P "notify ?> "',
-        )
+        layout()
+        window()
+
+        km.bind("v", "exec xdotool key Pause", "--release")
+        km.bind("c", "exec xdotool key --delay 40 Pause Pause", "--release")
+        km.bind("b", "exec xdotool key Pause Space", "--release")
+        km.bind("z", "exec xdotool key F1", "--release")
 
 
 def main():
