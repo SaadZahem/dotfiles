@@ -117,35 +117,31 @@ def layout():
 
 def window():
     # change focus
-    km.bind("$mod+h", "focus left")
-    km.bind("$mod+j", "focus down")
-    km.bind("$mod+k", "focus up")
-    km.bind("$mod+l", "focus right")
-    km.bind("$mod+semicolon", "focus mode_toggle")
-
-    km.bind("$mod+Left", "focus left")
-    km.bind("$mod+Down", "focus down")
-    km.bind("$mod+Up", "focus up")
-    km.bind("$mod+Right", "focus right")
-
-    km.bind("$mod+p", "focus parent")
-    km.bind("$mod+Shift+p", "focus child")
-
-    km.bind("$mod+bracketright", "focus next")
-    km.bind("$mod+bracketleft", "focus prev")
-    km.bind("$mod+Tab", "focus next")
-    km.bind("$mod+Shift+Tab", "focus prev")
+    focus = dict(
+        left=["h", "Left"],
+        down=["j", "Down"],
+        up=["k", "Up"],
+        right=["l", "Right"],
+        parent=["p"],
+        child=["Shift+p"],
+        next=["bracketright", "Tab"],
+        prev=["bracketleft", "Shift+Tab"],
+        mode_toggle=["semicolon"],
+    )
+    for name, keys in focus.items():
+        for key in keys:
+            km.bind(f"$mod+{key}", f"focus {name}")
 
     # move focused window
-    km.bind("$mod+Shift+h", "move left")
-    km.bind("$mod+Shift+j", "move down")
-    km.bind("$mod+Shift+k", "move up")
-    km.bind("$mod+Shift+l", "move right")
-
-    km.bind("$mod+Shift+Left", "move left")
-    km.bind("$mod+Shift+Down", "move down")
-    km.bind("$mod+Shift+Up", "move up")
-    km.bind("$mod+Shift+Right", "move right")
+    move = dict(
+        left=["h", "Left"],
+        down=["j", "Down"],
+        up=["k", "Up"],
+        right=["l", "Right"],
+    )
+    for name, keys in move.items():
+        for key in keys:
+            km.bind(f"$mod+Shift+{key}", f"move {name}")
 
     # kill focused window
     km.bind("$mod+Shift+w", "kill")
