@@ -36,240 +36,249 @@ km.bind("$mod+Shift+x", "exec $config/i3/scripts/shiftx")
 
 # --- workspace controls ----------------------------------------------------
 
-# switch to workspace
-for i in range(1, 11):
-    km.bind(f"$mod+{i % 10}", f"workspace number $ws{i}")
 
+def workspace():
+    # switch to workspace
+    for i in range(1, 11):
+        km.bind(f"$mod+{i % 10}", f"workspace number $ws{i}")
 
-# move focused container to workspace
-for i in range(1, 11):
-    km.bind(f"$mod+Shift+{i % 10}", f"move container to workspace number $ws{i}")
+    # move focused container to workspace
+    for i in range(1, 11):
+        km.bind(f"$mod+Shift+{i % 10}", f"move container to workspace number $ws{i}")
 
+    # other workspace controls
+    km.bind("$mod+z", "workspace back_and_forth")
+    km.bind("$mod+Shift+z", "move container to workspace back_and_forth")
+    km.bind("$mod+Shift+bracketright", "workspace next")
+    km.bind("$mod+Shift+bracketleft", "workspace prev")
 
-# other workspace controls
-km.bind("$mod+z", "workspace back_and_forth")
-km.bind("$mod+Shift+z", "move container to workspace back_and_forth")
-km.bind("$mod+Shift+bracketright", "workspace next")
-km.bind("$mod+Shift+bracketleft", "workspace prev")
+    # renaming and running commands
+    km.bind(
+        "$mod+comma",
+        "exec i3-input -P '(rename workspace) ' -F 'rename workspace to %s'",
+    )
+    km.bind("$mod+period", "exec i3-input -P '(create workspace) ' -F 'workspace %s'")
+    km.bind(
+        "$mod+F2", "exec i3-input -P '(rename window) ' -F 'exec set_title.sh \"%s\"'"
+    )
+    km.bind("$mod+slash", "exec i3-input -F '%s' -P \"i3-msg /> \"")
+    km.bind(
+        "$mod+Shift+slash",
+        'exec $noid i3-input -F \'exec notify-send "%s" "$(%s 2>&1)"\' -P "notify ?> "',
+    )
 
+    # vim-like marks
+    km.bind("$mod+m", "exec i3-input -l 1 -F 'mark %s' -P '(mark) '")
+    km.bind("$mod+Shift+m", '[con_id="__focused__"] unmark')
+    km.bind(
+        "$mod+apostrophe",
+        "exec i3-input -l 1 -F '[con_mark=\"%s\"] focus' -P '(goto mark) '",
+    )
+    km.bind(
+        "$mod+Shift+apostrophe",
+        "exec i3-input -l 1 -F 'swap container with mark %s' -P '(swap with mark) '",
+    )
+    km.bind("$mod+q", '[con_mark="q"] focus')
 
-# renaming and running commands
-km.bind(
-    "$mod+comma", "exec i3-input -P '(rename workspace) ' -F 'rename workspace to %s'"
-)
-km.bind("$mod+period", "exec i3-input -P '(create workspace) ' -F 'workspace %s'")
-km.bind("$mod+F2", "exec i3-input -P '(rename window) ' -F 'exec set_title.sh \"%s\"'")
-km.bind("$mod+slash", "exec i3-input -F '%s' -P \"i3-msg /> \"")
-km.bind(
-    "$mod+Shift+slash",
-    'exec $noid i3-input -F \'exec notify-send "%s" "$(%s 2>&1)"\' -P "notify ?> "',
-)
-
-
-# vim-like marks
-km.bind("$mod+m", "exec i3-input -l 1 -F 'mark %s' -P '(mark) '")
-km.bind("$mod+Shift+m", '[con_id="__focused__"] unmark')
-km.bind(
-    "$mod+apostrophe",
-    "exec i3-input -l 1 -F '[con_mark=\"%s\"] focus' -P '(goto mark) '",
-)
-km.bind(
-    "$mod+Shift+apostrophe",
-    "exec i3-input -l 1 -F 'swap container with mark %s' -P '(swap with mark) '",
-)
-km.bind("$mod+q", '[con_mark="q"] focus')
 
 # --- layout controls -------------------------------------------------------
 
-# change container layout (stacked, tabbed, toggle split)
-km.bind("$mod+w", "layout tabbed")
-km.bind("$mod+e", "layout toggle split")
-km.bind("$mod+Shift+e", "split toggle")
-km.bind("$mod+s", "layout stacking")
-km.bind("$mod+Control+h", "split h")
-km.bind("$mod+Control+v", "split v")
 
+def layout():
+    # change container layout (stacked, tabbed, toggle split)
+    km.bind("$mod+w", "layout tabbed")
+    km.bind("$mod+e", "layout toggle split")
+    km.bind("$mod+Shift+e", "split toggle")
+    km.bind("$mod+s", "layout stacking")
+    km.bind("$mod+Control+h", "split h")
+    km.bind("$mod+Control+v", "split v")
 
-# fullscreen, floating, and sticky
-km.bind("$mod+f", "fullscreen toggle")
-km.bind("$mod+Shift+f", "floating toggle")
-km.bind("$mod+Shift+t", "sticky toggle")
+    # fullscreen, floating, and sticky
+    km.bind("$mod+f", "fullscreen toggle")
+    km.bind("$mod+Shift+f", "floating toggle")
+    km.bind("$mod+Shift+t", "sticky toggle")
 
+    # scratchpad
+    km.bind("$mod+minus", "scratchpad show")
+    km.bind("$mod+Shift+minus", "move scratchpad")
 
-# scratchpad
-km.bind("$mod+minus", "scratchpad show")
-km.bind("$mod+Shift+minus", "move scratchpad")
+    # toggle bar visibility
+    km.bind("$mod+Shift+b", "bar mode toggle")
 
+    # show window title
+    km.bind("$mod+t", "border normal")
+    km.bind("$mod+Shift+q", "border pixel")
 
-# toggle bar visibility
-km.bind("$mod+Shift+b", "bar mode toggle")
-
-
-# show window title
-km.bind("$mod+t", "border normal")
-km.bind("$mod+Shift+q", "border pixel")
 
 # --- window controls -------------------------------------------------------
 
-# change focus
-km.bind("$mod+h", "focus left")
-km.bind("$mod+j", "focus down")
-km.bind("$mod+k", "focus up")
-km.bind("$mod+l", "focus right")
-km.bind("$mod+semicolon", "focus mode_toggle")
 
-km.bind("$mod+Left", "focus left")
-km.bind("$mod+Down", "focus down")
-km.bind("$mod+Up", "focus up")
-km.bind("$mod+Right", "focus right")
+def window():
+    # change focus
+    km.bind("$mod+h", "focus left")
+    km.bind("$mod+j", "focus down")
+    km.bind("$mod+k", "focus up")
+    km.bind("$mod+l", "focus right")
+    km.bind("$mod+semicolon", "focus mode_toggle")
 
-km.bind("$mod+p", "focus parent")
-km.bind("$mod+Shift+p", "focus child")
+    km.bind("$mod+Left", "focus left")
+    km.bind("$mod+Down", "focus down")
+    km.bind("$mod+Up", "focus up")
+    km.bind("$mod+Right", "focus right")
 
-km.bind("$mod+bracketright", "focus next")
-km.bind("$mod+bracketleft", "focus prev")
-km.bind("$mod+Tab", "focus next")
-km.bind("$mod+Shift+Tab", "focus prev")
+    km.bind("$mod+p", "focus parent")
+    km.bind("$mod+Shift+p", "focus child")
 
+    km.bind("$mod+bracketright", "focus next")
+    km.bind("$mod+bracketleft", "focus prev")
+    km.bind("$mod+Tab", "focus next")
+    km.bind("$mod+Shift+Tab", "focus prev")
 
-# move focused window
-km.bind("$mod+Shift+h", "move left")
-km.bind("$mod+Shift+j", "move down")
-km.bind("$mod+Shift+k", "move up")
-km.bind("$mod+Shift+l", "move right")
+    # move focused window
+    km.bind("$mod+Shift+h", "move left")
+    km.bind("$mod+Shift+j", "move down")
+    km.bind("$mod+Shift+k", "move up")
+    km.bind("$mod+Shift+l", "move right")
 
-km.bind("$mod+Shift+Left", "move left")
-km.bind("$mod+Shift+Down", "move down")
-km.bind("$mod+Shift+Up", "move up")
-km.bind("$mod+Shift+Right", "move right")
+    km.bind("$mod+Shift+Left", "move left")
+    km.bind("$mod+Shift+Down", "move down")
+    km.bind("$mod+Shift+Up", "move up")
+    km.bind("$mod+Shift+Right", "move right")
 
+    # kill focused window
+    km.bind("$mod+Shift+w", "kill")
+    km.bind("$mod+Escape", "kill")
+    km.bind(
+        "$mod+v",
+        "exec i3-input -l 1 -F '[workspace=\"%s\"] kill' -P '(kill workspace) '",
+    )
 
-# kill focused window
-km.bind("$mod+Shift+w", "kill")
-km.bind("$mod+Escape", "kill")
-km.bind(
-    "$mod+v", "exec i3-input -l 1 -F '[workspace=\"%s\"] kill' -P '(kill workspace) '"
-)
 
 # --- start applications ----------------------------------------------------
 
-# common applications
-km.bind("$mod+Return", "exec i3-sensible-terminal")
-km.bind("$mod+Shift+Return", 'exec i3-sensible-terminal -T "FloatShell"')
-km.bind(
-    "$mod+d",
-    "exec $noid $config/i3/scripts/menu -c dmenu_run -p Run $bar-bgcolor $bar-fgcolor &> $home/.var/dmenu.log",
-)
-km.bind("$mod+c", "exec $noid networkmanager_dmenu")
-km.bind(
-    "$mod+Shift+d",
-    "exec j4-dmenu-desktop --dmenu=\"$config/i3/scripts/menu -p Run '$bar-bgcolor' '$bar-fgcolor'\" &> $home/.var/dmenu.log",
-)
 
+def application():
+    # common applications
+    km.bind("$mod+Return", "exec i3-sensible-terminal")
+    km.bind("$mod+Shift+Return", 'exec i3-sensible-terminal -T "FloatShell"')
+    km.bind(
+        "$mod+d",
+        "exec $noid $config/i3/scripts/menu -c dmenu_run -p Run "
+        "$bar-bgcolor $bar-fgcolor &> $home/.var/dmenu.log",
+    )
+    km.bind("$mod+c", "exec $noid networkmanager_dmenu")
+    km.bind(
+        "$mod+Shift+d",
+        'exec j4-dmenu-desktop --dmenu="$config/i3/scripts/menu -p Run '
+        "'$bar-bgcolor' '$bar-fgcolor'\" &> $home/.var/dmenu.log",
+    )
 
-# launch custom Unicode grid picker
-km.bind("$mod+u", "exec $noid rofi-unicode")
+    # launch custom Unicode grid picker
+    km.bind("$mod+u", "exec $noid rofi-unicode")
 
+    # screenshot tools
+    km.bind("Print", "exec prtsc screen")
+    km.bind("$mod+Print", "exec prtsc window")
+    km.bind("$mod+Shift+s", "exec prtsc part")
 
-# screenshot tools
-km.bind("Print", "exec prtsc screen")
-km.bind("$mod+Print", "exec prtsc window")
-km.bind("$mod+Shift+s", "exec prtsc part")
+    # toggle CopyQ clipboard manager
+    km.bind("$mod+Shift+v", 'exec $noid "test $(copyq toggle) = false && i3 kill"')
 
+    # pop up the most recent missed notification
+    km.bind("$mod+n", "exec $noid dunstctl history-pop")
+    km.bind(
+        "$mod+Shift+n", "exec dunstctl set-paused toggle && pkill -RTMIN+11 i3blocks"
+    )
 
-# toggle CopyQ clipboard manager
-km.bind("$mod+Shift+v", 'exec $noid "test $(copyq toggle) = false && i3 kill"')
+    # launch boomer (zoomit alternative)
+    km.bind("$mod+grave", "exec $noid boomer")
 
+    # launch peek (screen recorder)
+    km.bind("$mod+$alt+r", "exec peek")
 
-# pop up the most recent missed notification
-km.bind("$mod+n", "exec $noid dunstctl history-pop")
-km.bind("$mod+Shift+n", "exec dunstctl set-paused toggle && pkill -RTMIN+11 i3blocks")
-
-
-# launch boomer (zoomit alternative)
-km.bind("$mod+grave", "exec $noid boomer")
-
-
-# launch peek (screen recorder)
-km.bind("$mod+$alt+r", "exec peek")
 
 # --- modes -----------------------------------------------------------------
 
-# resize mode
-with km.mode("resize"):
-    # left/right shrink/grow width; up/down shrink/grow height
-    km.bind("h", "resize shrink width 10 px or 10 ppt")
-    km.bind("j", "resize grow height 10 px or 10 ppt")
-    km.bind("k", "resize shrink height 10 px or 10 ppt")
-    km.bind("l", "resize grow width 10 px or 10 ppt")
 
-    # same bindings, but for the arrow keys
-    km.bind("Left", "resize shrink width 10 px or 10 ppt")
-    km.bind("Down", "resize grow height 10 px or 10 ppt")
-    km.bind("Up", "resize shrink height 10 px or 10 ppt")
-    km.bind("Right", "resize grow width 10 px or 10 ppt")
+def resize():
+    with km.mode("$mod+r", "resize"):
+        # left/right shrink/grow width; up/down shrink/grow height
+        km.bind("h", "resize shrink width 10 px or 10 ppt")
+        km.bind("j", "resize grow height 10 px or 10 ppt")
+        km.bind("k", "resize shrink height 10 px or 10 ppt")
+        km.bind("l", "resize grow width 10 px or 10 ppt")
 
-    km.bind("b", 'mode "border"')
+        # same bindings, but for the arrow keys
+        km.bind("Left", "resize shrink width 10 px or 10 ppt")
+        km.bind("Down", "resize grow height 10 px or 10 ppt")
+        km.bind("Up", "resize shrink height 10 px or 10 ppt")
+        km.bind("Right", "resize grow width 10 px or 10 ppt")
 
-    # back to normal: Enter or Escape or $mod+r
-    km.bind("Return", 'mode "default"')
-    km.bind("Escape", 'mode "default"')
-    km.bind("$mod+r", 'mode "default"')
-km.bind("$mod+r", 'mode "resize"')
+        km.bind("b", 'mode "border"')
 
-
-# border mode — manipulate borders of any window
-with km.mode("border"):
-    # quick border settings
-    km.bind("t", "border normal")
-    km.bind("0", "border none")
-
-    # adjusting border width
-    for n in range(1, 10):
-        km.bind(str(n), f"border pixel {n}")
-
-    # controlling gaps
-    km.bind("i", "gaps inner current toggle 8")
-    km.bind("o", "gaps outer current toggle 8")
-
-    # controlling status bar
-    km.bind("q", "bar mode dock")
-    km.bind("a", "bar mode hide")
-    km.bind("z", "bar mode invisible")
-
-    # control window title
-    km.bind("w", "title_window_icon toggle 8")
-    km.bind("x", "title_format $title-bold-verbose")
-    km.bind("s", "title_format $title-bold")
-
-    # center dialog
-    km.bind("c", "move position center")
-
-    km.bind("r", 'mode "resize"')
-
-    # exit to default mode
-    km.bind("Return", 'mode "default"')
-    km.bind("Escape", 'mode "default"')
-    km.bind("$mod+b", 'mode "default"')
-km.bind("$mod+b", 'mode "border"')
+        # back to normal: Enter or Escape or $mod+r
+        km.bind("Return", 'mode "default"')
+        km.bind("Escape", 'mode "default"')
 
 
-# gaming automation mode
-with km.mode("auto"):
-    km.bind("p", "exec \"xdotool key --window '$(xdotool getactivewindow)' Pause\"")
-    km.bind("q", "exec xdotool key --delay 50 Pause Pause")
-    km.bind(
-        "i",
-        'exec $noid i3-input -F \'exec notify-send "%s" "$(xdotool key --delay %s 2>&1)"\' -P "notify ?> "',
-    )
+def border():
+    with km.mode("$mod+b", "border"):
+        # quick border settings
+        km.bind("t", "border normal")
+        km.bind("0", "border none")
 
-    km.bind("Return", 'mode "default"')
-    km.bind("Escape", 'mode "default"')
-    km.bind("$mod+a", 'mode "default"')
-km.bind("$mod+a", 'mode "auto"')
+        # adjusting border width
+        for n in range(1, 10):
+            km.bind(str(n), f"border pixel {n}")
+
+        # controlling gaps
+        km.bind("i", "gaps inner current toggle 8")
+        km.bind("o", "gaps outer current toggle 8")
+
+        # controlling status bar
+        km.bind("q", "bar mode dock")
+        km.bind("a", "bar mode hide")
+        km.bind("z", "bar mode invisible")
+
+        # control window title
+        km.bind("w", "title_window_icon toggle 8")
+        km.bind("x", "title_format $title-bold-verbose")
+        km.bind("s", "title_format $title-bold")
+
+        # center dialog
+        km.bind("c", "move position center")
+
+        km.bind("r", 'mode "resize"')
+
+        # exit to default mode
+        km.bind("Return", 'mode "default"')
+        km.bind("Escape", 'mode "default"')
 
 
-if __name__ == "__main__":
+def game():
+    with km.mode("$mod+g", "game"):
+        workspace()
+        km.bind("p", "exec \"xdotool key --window '$(xdotool getactivewindow)' Pause\"")
+        km.bind("q", "exec xdotool key --delay 50 Pause Pause")
+        km.bind(
+            "i",
+            'exec $noid i3-input -F \'exec notify-send "%s" "$(xdotool key --delay %s 2>&1)"\' -P "notify ?> "',
+        )
+
+
+def main():
+    workspace()
+    layout()
+    window()
+    application()
+    resize()
+    border()
+    game()
+
     out = Path(__file__).with_name("keymap.conf")
     km.write(out, source="i3config.py")
     print(f"wrote {out} ({len(km._lines)} lines)")
+
+
+if __name__ == "__main__":
+    main()
