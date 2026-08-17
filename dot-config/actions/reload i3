@@ -1,1 +1,1 @@
-i3 reload
+cd && .config/i3/i3config.py && i3 reload
