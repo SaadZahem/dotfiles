@@ -184,7 +184,10 @@ def application():
     km.bind("$mod+Shift+s", "exec prtsc part")
 
     # toggle CopyQ clipboard manager
-    km.bind("$mod+Shift+v", 'exec $noid "test $(copyq toggle) = false && i3 kill"')
+    km.bind(
+        "$mod+Shift+v",
+        'exec $noid "test $(copyq toggle) = false && i3-msg [class=\\"copyq\\"] kill"',
+    )
 
     # pop up the most recent missed notification
     km.bind("$mod+n", "exec $noid dunstctl history-pop")
