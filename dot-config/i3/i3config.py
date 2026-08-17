@@ -44,7 +44,9 @@ def workspace():
 
     # move focused container to workspace
     for i in range(1, 11):
-        km.bind(f"$mod+Shift+{i % 10}", f"move container to workspace number $ws{i}")
+        km.bind(
+            f"$mod+Shift+{i % 10}", f"mark q, move container to workspace number $ws{i}"
+        )
 
     # other workspace controls
     km.bind("$mod+z", "workspace back_and_forth")
