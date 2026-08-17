@@ -1,0 +1,1 @@
+cd Pictures/Screenshots; feh $(ls -t1 | grep ^screenshot | head -n1)

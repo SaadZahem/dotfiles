@@ -1,0 +1,1 @@
+cd; dev/projects/clicker/clicker.py -w $(xdotool getwindowfocus) -i
