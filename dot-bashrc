@@ -22,18 +22,11 @@ export WINEPREFIX="$HOME/.wine"
 export C="$WINEPREFIX/drive_c/"
 export TELEGRAM_DESKTOP="$HOME/Downloads/Telegram Desktop/"
 
-# Starting window manager of choice
-
-alias si3='WM=i3 startx'
-alias splasma='WM=plasma startx'
-alias sxfce='WM=xfce startx'
-
 # Personalized aliases
 
 alias edit='$EDITOR $1'
 alias open=xdg-open
 alias summon=i3-summon
-alias restore3='i3-resurrect restore -w 3'
 alias hh="vim + ~/.zsh_history"
 alias pp="uv version --bump"
 alias tt=taskwarrior-tui
