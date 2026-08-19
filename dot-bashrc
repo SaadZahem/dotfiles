@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
+alias ls='ls -F --color=auto'
 alias grep='grep --color=auto'
 alias tree='tree -C'
 PS1='[\u@\h \W]\$ '
@@ -31,8 +31,10 @@ alias sxfce='WM=xfce startx'
 # Personalized aliases
 
 alias edit='$EDITOR $1'
+alias open=xdg-open
+alias summon=i3-summon
 alias restore3='i3-resurrect restore -w 3'
-alias hh="less ~/.zsh_history"
+alias hh="vim + ~/.zsh_history"
 alias pp="uv version --bump"
 alias tt=taskwarrior-tui
 alias vv='source .venv/bin/activate'
