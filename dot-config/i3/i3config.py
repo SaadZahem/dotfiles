@@ -174,7 +174,7 @@ def application():
     # download a youtube video from the copied url
     km.bind(
         "$mod+y",
-        "exec $noid bash -c 'yt-dlp --recode-video mp4 -P ~/Downloads \"$(xclip -o -selection clipboard)\""
+        'exec $noid bash -c \'yt-dlp --recode-video mp4 -P ~/Downloads "$(xclip -o -selection clipboard)"'
         " &>~/.var/yt-dlp.log"
         " && notify-send yt-dlp 'Download finished!' || notify-send -u critical yt-dlp 'Download failed!'",
         "--release",
@@ -211,7 +211,7 @@ def application():
 
 
 def resize():
-    with km.mode("$mod+r", "resize"):
+    with km.mode("resize", "$mod+r"):
         # left/right shrink/grow width; up/down shrink/grow height
         km.bind("h", "resize shrink width 10 px or 10 ppt")
         km.bind("j", "resize grow height 10 px or 10 ppt")
@@ -232,7 +232,7 @@ def resize():
 
 
 def border():
-    with km.mode("$mod+b", "border"):
+    with km.mode("border", "$mod+b"):
         # quick border settings
         km.bind("t", "border normal")
         km.bind("0", "border none")
@@ -266,7 +266,7 @@ def border():
 
 
 def game():
-    with km.mode("$mod+g", "game"):
+    with km.mode("claw"):
         workspace()
         layout()
         window()
