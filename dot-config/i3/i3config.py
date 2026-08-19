@@ -191,7 +191,7 @@ def application():
     # toggle CopyQ clipboard manager
     km.bind(
         "$mod+Shift+v",
-        'exec $noid "test $(copyq toggle) = false && i3-msg [class=\\"copyq\\"] kill"',
+        'exec $noid "test $(copyq toggle) = false && i3-msg [class=copyq] kill"',
     )
 
     # pop up the most recent missed notification
