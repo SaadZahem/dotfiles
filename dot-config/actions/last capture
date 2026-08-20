@@ -1,0 +1,1 @@
+cd; cd Pictures/Screenshots; feh $(ls -t1 | grep .png$ | head -n1)

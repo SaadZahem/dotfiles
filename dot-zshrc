@@ -1,5 +1,5 @@
 # This saves the need to redefine aliases
-source ~/.bashrc
+source ~/.config/aliases.sh
 
 # Setting up autocompletion
 autoload -Uz compinit
