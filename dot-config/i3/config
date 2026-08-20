@@ -52,6 +52,9 @@ exec $noid dunst
 ## Start audio_listener to update status bar when audio device change
 exec $noid $config/i3/scripts/audio-listener
 
+## Automatically switch i3 mode based on focused window
+exec_always $noid python3 $config/i3/scripts/i3-watch
+
 # Function keys
 
 # Use pactl to adjust volume in PulseAudio.

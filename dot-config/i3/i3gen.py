@@ -126,17 +126,19 @@ class Keymap:
         self.raw(f"{directive} {command}")
 
     @contextmanager
-    def mode(self, combo: str, name: str):
+    def mode(self, name: str, combo: str = ""):
         """Open a `mode "<name>" { ... }` block; bindings inside are indented."""
         self.raw(f'mode "{name}" {{')
         self._depth += 1
         try:
             yield self
         finally:
-            self.bind(combo, 'mode "default"')
+            if combo:
+                self.bind(combo, 'mode "default"')
             self._depth -= 1
             self.raw("}")
-            self.bind(combo, f'mode "{name}"')
+            if combo:
+                self.bind(combo, f'mode "{name}"')
 
     # --- output -----------------------------------------------------------
     def render(self, source: str = "i3config.py") -> str:
