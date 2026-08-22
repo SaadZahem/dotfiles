@@ -152,6 +152,7 @@ for_window [class="Terminator" title="FloatShell"] floating enable
 for_window [class="stats.exe" title="Chart Editor"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="claw.exe" title="Claw"] floating disable, fullscreen enable
+for_window [class="wapmap.exe"] fullscreen disable, floating enable
 
 ## key bindings
 include keymap.conf

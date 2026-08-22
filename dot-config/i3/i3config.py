@@ -39,8 +39,9 @@ km.bind("$mod+Shift+x", "exec $config/i3/scripts/shiftx")
 
 def workspace():
     # switch to workspace
-    for i in range(1, 11):
-        km.bind(f"$mod+{i % 10}", f"workspace number $ws{i}")
+    for i in range(1, 10):
+        km.bind(f"$mod+{i}", f"bar mode dock, workspace number $ws{i}")
+    km.bind("$mod+0", "bar mode invisible, workspace number $ws10")
 
     # move focused container to workspace
     for i in range(1, 11):
@@ -99,6 +100,10 @@ def layout():
     km.bind("$mod+f", "fullscreen toggle")
     km.bind("$mod+Shift+f", "floating toggle")
     km.bind("$mod+Shift+t", "sticky toggle")
+    km.bind(
+        "$mod+$alt+f",
+        "resize set width 1920, resize set height 1080, move position center",
+    )
 
     # scratchpad
     km.bind("$mod+minus", "scratchpad show")
