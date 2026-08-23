@@ -6,6 +6,7 @@ i3 = i3ipc.Connection()
 # Track the last active mode (fallback to "default")
 previous_mode = "default"
 current_mode = "default"
+auto_claw = False
 
 
 def on_mode_change(i3, event):
@@ -18,13 +19,19 @@ def on_mode_change(i3, event):
 
 
 def on_window_focus(i3, event):
-    global current_mode, previous_mode
+    global current_mode, previous_mode, auto_claw
     focused = event.container
     window_class = (focused.window_class or "").lower()
 
     # if focus is taken away from claw.exe, exit from claw mode
-    if window_class != "claw.exe" and current_mode == "claw":
-        i3.command(f'mode "{previous_mode}"')
+    if window_class == "claw.exe" and auto_claw:
+        i3.command("mode claw")
+    else:
+        if current_mode == "claw":
+            i3.command(f'mode "{previous_mode}"')
+            auto_claw = True
+        else:
+            auto_claw = False
 
 
 # Subscribe to both mode updates and window focus events
