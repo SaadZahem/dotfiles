@@ -12,9 +12,9 @@ def on_mode_change(i3, event):
     global previous_mode, current_mode
     mode = event.change
 
-    if mode != "claw":
-        previous_mode = mode
-    current_mode = mode
+    if mode != current_mode:
+        previous_mode = current_mode
+        current_mode = mode
 
 
 def on_window_focus(i3, event):
@@ -22,13 +22,9 @@ def on_window_focus(i3, event):
     focused = event.container
     window_class = (focused.window_class or "").lower()
 
-    if "claw.exe" in window_class:
-        if current_mode != "claw":
-            i3.command('mode "claw"')
-    else:
-        if current_mode == "claw":
-            # Restore the previously active mode
-            i3.command(f'mode "{previous_mode}"')
+    # if focus is taken away from claw.exe, exit from claw mode
+    if window_class != "claw.exe" and current_mode == "claw":
+        i3.command(f'mode "{previous_mode}"')
 
 
 # Subscribe to both mode updates and window focus events

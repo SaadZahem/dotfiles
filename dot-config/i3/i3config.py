@@ -281,6 +281,13 @@ def game():
         km.bind("b", "exec xdotool key Pause Space", "--release")
         km.bind("z", "exec xdotool key F1", "--release")
 
+        km.bind("$mod+g", "mode default")
+    km.bind(
+        "$mod+g",
+        'exec $noid test "$(xdotool getactivewindow getwindowclassname)" = "claw.exe"'
+        " && i3-msg mode claw",
+    )
+
 
 def main():
     workspace()
