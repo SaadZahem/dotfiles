@@ -36,3 +36,24 @@ orphans(){
 showpack() {
     pamac info $1 | rg "Required|Optional|Depends"
 }
+
+# Full video capped at 360p
+yt-low() {
+  yt-dlp \
+    --extractor-args "youtube:player-client=web,mweb" \
+    -f "bv*[ext=mp4][height<=360]+ba[ext=m4a]/b[ext=mp4][height<=360]/b[height<=360]" \
+    --merge-output-format mp4 \
+    "$1"
+}
+
+# Slice at max/native quality: yt-cut <URL> <START-END>
+# Example: yt-cut "https://..." "01:30-03:45"
+yt-cut() {
+  yt-dlp \
+    --extractor-args "youtube:player-client=web,mweb" \
+    -f "bv*+ba/b" \
+    --merge-output-format mp4 \
+    --download-sections "*$2" \
+    --force-keyframes-at-cuts \
+    "$1"
+}
