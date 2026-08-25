@@ -151,7 +151,7 @@ for_window [class="Terminator" title="VimPad"] floating enable, resize set 1200 
 for_window [class="Terminator" title="FloatShell"] floating enable
 for_window [class="stats.exe" title="Chart Editor"] floating enable
 for_window [class="feh|pavucontrol"] floating enable
-for_window [class="claw.exe" title="Claw"] floating disable, fullscreen enable
+for_window [class="claw.exe" title="Claw"] fullscreen disable, floating enable
 for_window [class="wapmap.exe"] fullscreen disable, floating enable
 
 ## key bindings
