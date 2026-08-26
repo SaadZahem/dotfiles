@@ -110,6 +110,7 @@ def layout():
 
     # toggle bar visibility
     km.bind("$mod+Shift+b", "bar mode toggle")
+    km.bind("$mod+$alt+b", "bar mode invisible")
 
     # show window title
     km.bind("$mod+t", "border normal")
