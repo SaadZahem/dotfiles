@@ -195,6 +195,7 @@ def application():
     km.bind("Print", "exec prtsc screen")
     km.bind("$mod+Print", "exec prtsc window")
     km.bind("$mod+Shift+s", "exec prtsc part")
+    km.bind("$mod+Shift+a", "exec ocr-grab")
 
     # toggle CopyQ clipboard manager
     km.bind(

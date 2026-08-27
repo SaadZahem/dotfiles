@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+TMP_IMG=$(mktemp /tmp/ocr-XXXXXX.png)
+trap 'rm -f "$TMP_IMG"' EXIT
+
+# Detect Wayland vs X11
+if [ -n "$WAYLAND_DISPLAY" ]; then
+    # Wayland screenshot selection
+    grim -g "$(slurp)" "$TMP_IMG" || exit 1
+else
+    # X11 screenshot selection
+    maim -s "$TMP_IMG" || exit 1
+fi
+
+# Run Tesseract OCR and send output to stdout
+TEXT=$(tesseract "$TMP_IMG" stdout -l eng --oem 1 --psm 6 2>/dev/null)
+
+# Strip trailing whitespace/newlines
+TEXT=$(echo "$TEXT" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+
+if [ -n "$TEXT" ]; then
+    if [ -n "$WAYLAND_DISPLAY" ]; then
+        echo -n "$TEXT" | wl-copy
+    else
+        echo -n "$TEXT" | xclip -selection clipboard
+    fi
+    notify-send "OCR Copied" "$TEXT" -t 3000
+else
+    notify-send "OCR Failed" "No text recognized" -t 2000
+fi
