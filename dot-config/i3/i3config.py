@@ -22,6 +22,9 @@ km = Keymap()
 # i3 general controls
 # Reload/restart regenerate keymap.conf first, so editing this file and pressing
 # the shortcut applies the change immediately.
+km.raw(
+    "set $msg-exit 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.'"
+)
 km.bind("$mod+Shift+c", 'exec $noid "$config/i3/i3config.py && i3-msg reload"')
 km.bind("$mod+Shift+r", 'exec $noid "$config/i3/i3config.py && i3-msg restart"')
 km.bind(
