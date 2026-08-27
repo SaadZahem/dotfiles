@@ -1,30 +1,31 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 TMP_IMG=$(mktemp /tmp/ocr-XXXXXX.png)
 trap 'rm -f "$TMP_IMG"' EXIT
 
-# Detect Wayland vs X11
-if [ -n "$WAYLAND_DISPLAY" ]; then
-    # Wayland screenshot selection
-    grim -g "$(slurp)" "$TMP_IMG" || exit 1
+# 1. Detect current active keyboard layout
+LANG_CODE=$(setxkbmap -query 2>/dev/null | grep -E '^layout:' | grep -iq "ara" && echo "ara")
+
+# 2. Capture selected screen area
+maim -s "$TMP_IMG" || exit 1
+
+# 3. Run OCR with the detected language
+# Use ara+eng when layout is Arabic to catch mixed Latin terms/numbers
+if [ "$LANG_CODE" = "ara" ]; then
+    TESS_LANG="ara+eng"
 else
-    # X11 screenshot selection
-    maim -s "$TMP_IMG" || exit 1
+    TESS_LANG="eng"
 fi
 
-# Run Tesseract OCR and send output to stdout
-TEXT=$(tesseract "$TMP_IMG" stdout -l eng --oem 1 --psm 6 2>/dev/null)
+TEXT=$(tesseract "$TMP_IMG" stdout -l "$TESS_LANG" --oem 1 --psm 6 2>/dev/null)
 
-# Strip trailing whitespace/newlines
+# Clean up whitespace
 TEXT=$(echo "$TEXT" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
 
+# 4. Copy to clipboard and notify
 if [ -n "$TEXT" ]; then
-    if [ -n "$WAYLAND_DISPLAY" ]; then
-        echo -n "$TEXT" | wl-copy
-    else
-        echo -n "$TEXT" | xclip -selection clipboard
-    fi
-    notify-send "OCR Copied" "$TEXT" -t 3000
+    echo -n "$TEXT" | xclip -selection clipboard
+    notify-send "OCR Copied [$TESS_LANG]" "$TEXT" -t 3000
 else
     notify-send "OCR Failed" "No text recognized" -t 2000
 fi
