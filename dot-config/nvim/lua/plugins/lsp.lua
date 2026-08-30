@@ -132,6 +132,9 @@ return {
     local servers = {
       ts_ls = {},
       ruff = {},
+      clangd = {
+        cmd = { 'clangd', '--compile-commands-dir=build' },
+      },
       pylsp = {
         settings = {
           pylsp = {
