@@ -112,7 +112,6 @@ bar {
     status_command i3blocks -c $config/i3blocks/i3blocks.conf
     separator_symbol "|"
 
-    workspace_command $config/i3/scripts/workspace
     workspace_min_width 40
     strip_workspace_numbers yes
     tray_padding 4
