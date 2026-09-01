@@ -3,7 +3,7 @@
 FILE="$@"
 if [[ -n "$FILE" ]]
 then
-    i3-sensible-terminal -T VimPad -x vim "'$FILE'"
+    i3-sensible-terminal -T VimPad -x vim "$(echo "$FILE" | sed 's/ /\\ /g')"
 else
     i3-sensible-terminal -T VimPad -x vim
 fi
