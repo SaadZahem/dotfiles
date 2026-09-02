@@ -1,0 +1,14 @@
+#!/bin/sh
+# A terminal inside VS Code exports ELECTRON_RUN_AS_NODE=1, and
+# an Electron that inherits it starts as plain node instead.
+unset ELECTRON_RUN_AS_NODE
+
+# The desktop font is imposed through fontconfig, and fontconfig is
+# read once, early -- before any of the app's own code runs. So the
+# variable has to be in the environment the binary is executed with.
+# The file itself is written by the app; the first ever launch has
+# none, notices, and restarts itself once.
+wa_fonts="${XDG_DATA_HOME:-$HOME/.local/share}/whatsapp-desktop/fonts.conf"
+[ -f "$wa_fonts" ] && export FONTCONFIG_FILE="$wa_fonts"
+
+exec /home/szahem/.local/lib/whatsapp-desktop/whatsapp-desktop "$@"
