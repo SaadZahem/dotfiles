@@ -27,6 +27,11 @@ exec $noid xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec $noid nm-applet
 
+## Enables tray icon of some modern programs
+## this translates the modern SNI protocol to legacy XEmbed protocol
+## Needed for tray icon of whatsapp client to work
+exec $noid snixembed
+
 ## Start fusuma to enable touchpad gestures
 exec $noid fusuma -d
 
