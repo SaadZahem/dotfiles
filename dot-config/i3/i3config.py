@@ -155,7 +155,7 @@ def window():
     km.bind("$mod+Shift+w", "kill")
     km.bind("$mod+Escape", "kill")
     km.bind(
-        "$mod+v",
+        "$mod+Shift+v",
         "exec i3-input -l 1 -F '[workspace=\"%s\"] kill' -P '(kill workspace) '",
     )
 
@@ -199,7 +199,7 @@ def application():
 
     # toggle CopyQ clipboard manager
     km.bind(
-        "$mod+Shift+v",
+        "$mod+v",
         'exec $noid "test $(copyq toggle) = false && i3-msg [class=copyq] kill"',
     )
 
