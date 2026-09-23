@@ -4,7 +4,7 @@ TELEGRAM_DIR="$HOME/Downloads/Telegram Desktop"
 TGSYNC_DIR="$HOME/mnt/tgsync"
 STAMP_FILE="$HOME/.local/state/telegram_sync.stamp"
 
-mkdir -p "$PDF_DIR" "$M4A_DIR" "${STAMP_FILE%/*}"
+mkdir -p "$TGSYNC_DIR" "${STAMP_FILE%/*}"
 
 FIND_ARGS=()
 [[ -f "$STAMP_FILE" ]] && FIND_ARGS=("-newer" "$STAMP_FILE")
