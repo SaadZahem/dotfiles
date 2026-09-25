@@ -1,0 +1,9 @@
+[urgency_critical]
+background = "#900000"
+foreground = "#ffffff"
+frame_color = "#ff0000"
+timeout = 0
+# Allow critical alerts to bypass pause mode
+override_pause_level = 100
+
+# vim: ft=dosini
