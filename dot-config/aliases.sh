@@ -1,6 +1,7 @@
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias tree='tree -C'
+alias R='R --quiet'
 
 alias edit='$EDITOR $1'
 alias open=xdg-open
