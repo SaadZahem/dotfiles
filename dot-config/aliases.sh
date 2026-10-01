@@ -6,6 +6,7 @@ alias edit='$EDITOR $1'
 alias open=xdg-open
 alias summon=i3-summon
 
+alias '?'='echo $?'
 alias hh="vim + ~/.zsh_history"
 alias pp="uv version --bump"
 alias tt=taskwarrior-tui
