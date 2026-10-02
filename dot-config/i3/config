@@ -154,6 +154,7 @@ for_window [class="Peek"] sticky enable
 for_window [class="Terminator" title="VimPad"] floating enable, resize set 1200 800, move position center
 for_window [class="Terminator" title="FloatShell"] floating enable
 for_window [class="stats.exe" title="Chart Editor"] floating enable
+for_window [class="R_x11"] floating enable
 for_window [class="feh|pavucontrol"] floating enable
 for_window [class="claw.exe" title="Claw"] fullscreen disable, floating enable
 for_window [class="wapmap.exe"] fullscreen disable, floating enable
