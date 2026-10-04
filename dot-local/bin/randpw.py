@@ -3,4 +3,6 @@
 import random
 import string
 
-print(''.join(random.choice(list(string.ascii_letters + string.digits))) for _ in range(16))
+length = 16
+values = list(string.ascii_letters + string.digits + "!$#%")
+print(''.join(random.choice(values) for _ in range(length)))
