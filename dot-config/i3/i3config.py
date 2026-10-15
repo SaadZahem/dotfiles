@@ -233,7 +233,7 @@ def resize():
         km.bind("Up", "resize shrink height 10 px or 10 ppt")
         km.bind("Right", "resize grow width 10 px or 10 ppt")
 
-        km.bind("$mod+g", 'mode "geometry"')
+        km.bind("$mod+g", 'mode "geom"')
 
         # back to normal: Enter or Escape or $mod+r
         km.bind("Return", 'mode "default"')
@@ -241,7 +241,7 @@ def resize():
 
 
 def geometry():
-    with km.mode("geometry", "$mod+g"):
+    with km.mode("geom", "$mod+g"):
         # quick border settings
         km.bind("t", "border normal")
         km.bind("0", "border none")
