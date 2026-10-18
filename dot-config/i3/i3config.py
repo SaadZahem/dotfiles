@@ -233,15 +233,15 @@ def resize():
         km.bind("Up", "resize shrink height 10 px or 10 ppt")
         km.bind("Right", "resize grow width 10 px or 10 ppt")
 
-        km.bind("b", 'mode "border"')
+        km.bind("$mod+g", 'mode "geom"')
 
         # back to normal: Enter or Escape or $mod+r
         km.bind("Return", 'mode "default"')
         km.bind("Escape", 'mode "default"')
 
 
-def border():
-    with km.mode("border", "$mod+b"):
+def geometry():
+    with km.mode("geom", "$mod+g"):
         # quick border settings
         km.bind("t", "border normal")
         km.bind("0", "border none")
@@ -267,7 +267,10 @@ def border():
         # center dialog
         km.bind("c", "move position center")
 
-        km.bind("r", 'mode "resize"')
+        # clicker
+        km.bind("f", "exec $home/dev/projects/clicker/clicker.py -i")
+
+        km.bind("$mod+r", 'mode "resize"')
 
         # exit to default mode
         km.bind("Return", 'mode "default"')
@@ -287,7 +290,7 @@ def game():
 
         km.bind("$mod+g", "mode default")
     km.bind(
-        "$mod+g",
+        "$mod+Shift+g",
         'exec $noid test "$(xdotool getactivewindow getwindowclassname)" = "claw.exe"'
         " && i3-msg mode claw",
     )
@@ -299,7 +302,7 @@ def main():
     window()
     application()
     resize()
-    border()
+    geometry()
     game()
 
     out = Path(__file__).with_name("keymap.conf")
