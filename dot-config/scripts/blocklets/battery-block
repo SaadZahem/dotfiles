@@ -3,13 +3,15 @@
 BAT="${BAT:-/sys/class/power_supply/BAT0}"
 CAPACITY=$(cat "$BAT/capacity")
 STATUS=$(cat "$BAT/status")
+FULL=$(cat "$BAT/energy_full")
+FULL_DESIGN=$(cat "$BAT/energy_full_design")
 CYCLE_COUNT=$(cat "$BAT/cycle_count")
+
 STATE_FILE="${STATE_FILE:-$HOME/.local/state/battery_notified}"
-
-# Ensure the state directory exists
 mkdir -p "${STATE_FILE%/*}"
+trap 'rm -f "$STATE_FILE"' EXIT
 
-# 1. Choosing an icon
+# Battery Status Icon
 case "$STATUS" in
     (Charging)      ICON="⚡" ;;
     (Discharging)   ICON=""  ;;
@@ -17,11 +19,14 @@ case "$STATUS" in
     (*)             ICON="🔋" ;;
 esac
 
-# 2. Full and short text
-echo "$ICON $CAPACITY% ($CYCLE_COUNT)"
+# Battery Health
+HEALTH_PCT=$(awk -v f="$FULL" -v fd="$FULL_DESIGN" 'BEGIN { printf "%.2f", (f / fd) * 100 }')
+
+# Full and short text
+echo "$ICON $CAPACITY% $HEALTH_PCT% ($CYCLE_COUNT)"
 echo "$ICON $CAPACITY%"
 
-# 3. Critical threshold
+# Battery Recharge Reminder
 if [[ "$CAPACITY" -le 20 && "$STATUS" == "Discharging" ]]
 then
     if [[ ! -f "$STATE_FILE" ]]
@@ -33,6 +38,3 @@ then
     echo "#FFFFFF"
     exit 33  # urgent exit code, this sets the background to red
 fi
-
-rm -f "$STATE_FILE"
-exit 0
