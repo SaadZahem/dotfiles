@@ -9,7 +9,6 @@ CYCLE_COUNT=$(cat "$BAT/cycle_count")
 
 STATE_FILE="${STATE_FILE:-$HOME/.local/state/battery_notified}"
 mkdir -p "${STATE_FILE%/*}"
-trap 'rm -f "$STATE_FILE"' EXIT
 
 # Battery Status Icon
 case "$STATUS" in
@@ -38,3 +37,5 @@ then
     echo "#FFFFFF"
     exit 33  # urgent exit code, this sets the background to red
 fi
+
+rm -f "$STATE_FILE"
