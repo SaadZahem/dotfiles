@@ -21,11 +21,16 @@ rr() {
     rm $file
 }
 pcurlloop() {
+    local response_cache=
     while true
     do
-        date
-        pcurl -s
-        echo
+        local response=$(pcurl -s)
+        if [[ $response != $response_cache ]]
+        then
+            date
+            echo $response
+            local response_cache=$response
+        fi
         sleep ${1:-6}
     done
 }
