@@ -89,7 +89,6 @@ set $bar-fgcolor "#3e7b83"
 
 # remove window titles by default but make them bold when they are enabled
 for_window [all] title_format $title-bold, border pixel
-for_window [class="vlc"] border normal
 
 # set outer gaps for all workspaces
 # except ws3 where gaps are inner instead of outer
