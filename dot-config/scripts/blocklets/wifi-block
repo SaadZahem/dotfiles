@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
-INTERFACE="${INTERFACE:-wlp1s0}"
+default_interface=$(iw dev | grep Interface | awk '{print $2}' | head -n1)
+INTERFACE="${INTERFACE:-$default_interface}"
 LABEL="${LABEL:- }"
 
 # 1. Handle Clicks: If you left-click ($BLOCK_BUTTON = 1), send notification
