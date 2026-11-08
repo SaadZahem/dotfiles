@@ -1,1 +1,0 @@
-nmcli device wifi hotspot ifname wlp1s0 ssid laplab password wlp1s067
