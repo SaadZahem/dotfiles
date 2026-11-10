@@ -91,10 +91,7 @@ set $bar-fgcolor "#3e7b83"
 for_window [all] title_format $title-bold, border pixel
 
 # set outer gaps for all workspaces
-# except ws3 where gaps are inner instead of outer
 gaps outer 8
-workspace 3 gaps outer 0
-workspace 3 gaps inner 8
 
 # Font for window titles
 #
