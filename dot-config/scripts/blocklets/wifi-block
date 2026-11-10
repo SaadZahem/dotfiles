@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 
-default_interface=$(iw dev | grep Interface | awk '{print $2}' | head -n1)
-INTERFACE="${INTERFACE:-$default_interface}"
+INTERFACE="${INTERFACE:-$(ip route | awk '/default/ {print $5}')}"
 LABEL="${LABEL:- }"
 
 # 1. Handle Clicks: If you left-click ($BLOCK_BUTTON = 1), send notification
