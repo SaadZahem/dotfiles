@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-INTERFACE="${INTERFACE:-$(ip route | awk '/default/ {print $5}')}"
+INTERFACE="${INTERFACE:-$(ip r | awk '/default/ {print $5}' | head -1)}"
 LABEL="${LABEL:- }"
 
 # 1. Handle Clicks: If you left-click ($BLOCK_BUTTON = 1), send notification
