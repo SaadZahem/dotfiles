@@ -34,7 +34,7 @@ pcurlloop() {
         sleep ${1:-6}
     done
 }
-orphans(){
+orphans() {
     for pack in $(pacman -Qdtq)
     do
         pacman -Ss "^$pack$"

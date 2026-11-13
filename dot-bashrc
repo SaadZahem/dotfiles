@@ -17,7 +17,7 @@ export WM=i3
 # Locations I use
 
 export WINEPREFIX="$HOME/.wine"
-export C="$WINEPREFIX/drive_c/"
-export TELEGRAM_DESKTOP="$HOME/Downloads/Telegram Desktop/"
+export C="$WINEPREFIX/drive_c"
+export TELEGRAM_DESKTOP="$HOME/Downloads/Telegram Desktop"
 
 # vim: ft=sh
