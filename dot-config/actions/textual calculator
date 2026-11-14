@@ -1,0 +1,1 @@
+cd; i3-summon -c Terminator i3-sensible-terminal -T TextualCalculator -x dev/projects/textual-calculator/.venv/bin/python dev/projects/textual-calculator/src/textual_calculator/calculator.py && i3-msg floating enable, resize grow height 60
