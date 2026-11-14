@@ -19,5 +19,7 @@ export WM=i3
 export WINEPREFIX="$HOME/.wine"
 export C="$WINEPREFIX/drive_c"
 export TELEGRAM_DESKTOP="$HOME/Downloads/Telegram Desktop"
+export PROJECTS="$HOME/dev/projects"
+export SILE_BIN="$PROJECTS/sile/sile"
 
 # vim: ft=sh
