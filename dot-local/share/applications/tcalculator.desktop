@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=TCalculator
+Exec=dev/projects/textual-calculator/.venv/bin/python dev/projects/textual-calculator/src/textual_calculator/calculator.py
+Type=Application
+Terminal=true
+Icon=Python
+Categories=Office;Utility;
