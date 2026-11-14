@@ -12,6 +12,10 @@ set softtabstop=4
 imap jk <Esc>
 imap kj <Esc>
 
+" Center the cursor when using C-d and C-u
+map <C-u> <C-u>zz
+map <C-d> <C-d>zz
+
 " Rerender the buffer without losing the current position
 let @r = "m0GVgg0\<Esc>'0"
 
