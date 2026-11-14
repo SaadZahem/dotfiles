@@ -22,7 +22,7 @@ function! s:CompileSile () abort
   let l:dir = expand('%:p:h')
   let l:file = expand('%:t')
   let l:sile = empty($SILE_BIN) ? 'sile' : $SILE_BIN
-  let l:cmd = printf('cd %s && env -u LUA_PATH -u LUA_CPATH -u LUA_INIT %s --synctex %s',
+  let l:cmd = printf('cd %s && env -u LUA_PATH -u LUA_CPATH -u LUA_INIT SILE=%s sil-sync.sh --synctex %s',
         \ shellescape(l:dir), shellescape(l:sile), shellescape(l:file))
   let l:output = system(l:cmd)
   if v:shell_error != 0
