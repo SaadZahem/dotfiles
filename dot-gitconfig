@@ -46,6 +46,8 @@
     ff = merge --ff-only
     dm = !"git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d; git remote -v update -p"
 
+    ; handling remotes
+    fork-setup = !"f() { user=$(gh api user -q .login); url=$(git remote get-url origin | sed -r \"s|([:/])[^/]+/([^/]+)$|\\1${user}/\\2|\"); git remote rename origin upstream; git remote add origin \"$url\"; git remote -v; }; f"
 
 [color "branch"]
 	current = yellow reverse
