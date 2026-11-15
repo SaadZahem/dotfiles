@@ -1,0 +1,1 @@
+i3-resurrect restore -w "$(i3-msg -t get_workspaces | jq -r '.[] | select(.focused==true).name')"

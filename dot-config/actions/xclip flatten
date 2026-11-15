@@ -1,0 +1,1 @@
+xclip -o | tr -d '\n' | xclip -i

@@ -1,0 +1,1 @@
+xclip -o | tr '\n' ' ' | spd-say -em none

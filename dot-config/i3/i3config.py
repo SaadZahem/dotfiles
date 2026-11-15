@@ -58,7 +58,7 @@ def workspace():
     # renaming and running commands
     km.bind(
         "$mod+comma",
-        "exec i3-input -P '(rename workspace) ' -F 'rename workspace to %s'",
+        "exec i3-input -P '(rename workspace) ' -F 'rename workspace to \"%s\"'",
     )
     km.bind("$mod+period", "exec i3-input -P '(create workspace) ' -F 'workspace %s'")
     km.bind(

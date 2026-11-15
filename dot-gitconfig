@@ -2,7 +2,7 @@
     # Descriptive aliases
 
     ; list aliases or contributors
-    aliases=!git config -l | grep ^alias | cut -c 7-
+    aliases = !git config -l | grep ^alias | cut -c 7-
     top = !git log --format=format:%an | sort | uniq -c | sort -r | head -n 20
     contributors = shortlog --summary --numbered
 
@@ -15,20 +15,21 @@
 	bb = branch -a
 	rr = remote -v
     dd = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-    ndiff = !"d() { git diff --patch-with-stat HEAD~$1..HEAD -- $2; }; git diff-index --quiet HEAD -- || clear; d"
-    mdiff = "!f() { git stash | head -1 | grep -q 'No local changes to save'; x=$?; git merge --no-commit $1 &>/dev/null; git add -u &>/dev/null; git diff --staged; git reset --hard &>/dev/null; test $x -ne 0 && git stash pop &>/dev/null; }; f"
+    ndiff = !"f() { git diff --patch-with-stat HEAD~$1..HEAD -- $2; }; git diff-index --quiet HEAD -- || clear; f"
+    mdiff = !"f() { git stash | head -1 | grep -q 'No local changes to save'; x=$?; git merge --no-commit $1 &>/dev/null; git add -u &>/dev/null; git diff --staged; git reset --hard &>/dev/null; test $x -ne 0 && git stash pop &>/dev/null; }; f"
 
-    ; find commit by message or source code, then find tag or branch containing the comment
-    fgrep = log --pretty=format:'%C(yellow)%h	%Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep
-    fstring = log --pretty=format:'%C(yellow)%h	%Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S
+    ; find commit, tag, or branch
+    grep = log --pretty=format:'%C(yellow)%h %Cblue%ad %Creset%s%Cgreen [%cn] %Cred%d' --decorate --date=short --grep
+    search = log --pretty=format:'%C(yellow)%h %Cblue%ad %Creset%s%Cgreen [%cn] %Cred%d' --decorate --date=short -S
     ft = describe --always --contains
     fb = branch -a --contains
+    not-merged = !"git branch | grep -v \"$(git branch --merged)\""
 
     # Action-taking aliases
 
     ; stashing moving around
-    go = "!f() { git checkout -b \"$1\" 2>/dev/null || git checkout \"$1\"; }; f"
-    goes = "!f() { git stash; git go \"$1\"; git stash pop; }; f"
+    go = !"f() { git checkout -b \"$1\" 2>/dev/null || git checkout \"$1\"; }; f"
+    goes = !"f() { git stash; git go \"$1\"; git stash pop; }; f"
 
     ; staging and commiting
     aa = add --all
@@ -43,8 +44,10 @@
 
     ; merging and cleaning
     ff = merge --ff-only
-    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d; git remote -v update -p"
+    dm = !"git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d; git remote -v update -p"
 
+    ; handling remotes
+    fork-setup = !"f() { user=$(gh api user -q .login); url=$(git remote get-url origin | sed -r \"s|([:/])[^/]+/([^/]+)$|\\1${user}/\\2|\"); git remote rename origin upstream; git remote add origin \"$url\"; git remote -v; }; f"
 
 [color "branch"]
 	current = yellow reverse

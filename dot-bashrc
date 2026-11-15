@@ -8,7 +8,7 @@
 source ~/.config/aliases.sh
 PS1='[\u@\h \W]\$ '
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 export EDITOR=/usr/bin/vim
 export TERMINAL=terminator
 export PAGER=less
@@ -17,7 +17,9 @@ export WM=i3
 # Locations I use
 
 export WINEPREFIX="$HOME/.wine"
-export C="$WINEPREFIX/drive_c/"
-export TELEGRAM_DESKTOP="$HOME/Downloads/Telegram Desktop/"
+export C="$WINEPREFIX/drive_c"
+export TELEGRAM_DESKTOP="$HOME/Downloads/Telegram Desktop"
+export PROJECTS="$HOME/dev/projects"
+export SILE_BIN="$PROJECTS/sile/sile"
 
 # vim: ft=sh

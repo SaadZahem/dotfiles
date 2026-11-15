@@ -13,3 +13,8 @@ map <C-c> exec zathura-copy
 # Open the corresponding vim note
 map i exec 'zathura-vim "$FILE" "$PAGE"'
 map u exec 'zathura-vim "$FILE"'
+
+# Open in Xournal++
+#
+# Xournal++ will try to open .xopp file if it exists in the same directory
+map x exec 'xournalpp "$FILE"'

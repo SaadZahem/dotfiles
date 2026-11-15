@@ -1,1 +1,1 @@
-cd && .config/i3/i3config.py && i3 restart
+cd; .config/i3/i3config.py && i3-msg restart
