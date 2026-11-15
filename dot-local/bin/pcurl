@@ -22,8 +22,17 @@ fi
 
 for attr in domain port zone email pword
 do
-    [[ -z "${!attr}" ]] && export $attr=$(jaq -r <<< "$settings"  ".$attr")
-    [[ "${!attr}" == "null" ]] && export $attr=$(jaq -r <<< "$contents" ".global.$attr")
+    if [[ -z "${!attr}" ]]; then
+        # read value from local settings
+        value=$(jaq -c <<< "$settings" ".$attr")
+        if [[ "$value" == "null" ]]; then
+            # fallback to global settings
+            export $attr=$(jaq -r <<< "$contents" ".global.$attr")
+        else
+            # remove quotes around string values
+            export $attr=$(echo $value | jaq -r)
+        fi
+    fi
 done
 
 export extra=$@
