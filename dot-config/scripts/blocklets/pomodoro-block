@@ -24,12 +24,12 @@ case $BLOCK_BUTTON in
             STATUS="RUNNING"
         fi
         ;;
-    3) # Right Click: Hard Reset
+    2) # Middle Click: Skip Phase
         STATUS="STOPPED"
         REMAINING=$((WORK_MIN * 60))
         PHASE="WORK"
         ;;
-    2) # Middle Click: Skip Phase
+    3) # Right Click: Hard Reset
         if [[ "$PHASE" == "WORK" ]]; then
             PHASE="BREAK"
             REMAINING=$((BREAK_MIN * 60))
@@ -44,7 +44,7 @@ esac
 # 2. Process the Timer Tick
 if [[ "$STATUS" == "RUNNING" ]]; then
     REMAINING=$((REMAINING - 1))
-    
+
     # Phase Complete!
     if [[ $REMAINING -le 0 ]]; then
         if [[ "$PHASE" == "WORK" ]]; then
