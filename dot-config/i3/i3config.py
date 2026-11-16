@@ -180,9 +180,9 @@ def application():
     # download a youtube video from the copied url
     km.bind(
         "$mod+y",
-        'exec $noid bash -c \'yt-dlp --recode-video mp4 -P ~/Downloads "$(xclip -o -selection clipboard)"'
+        r'exec $noid bash -c \'yt-dlp --recode-video mp4 -P ~/Downloads "$(xclip -o -selection clipboard)"'
         " &>~/.var/yt-dlp.log"
-        " && notify-send yt-dlp 'Download finished!' || notify-send -u critical yt-dlp 'Download failed!'",
+        r" && notify-send yt-dlp \'Download finished!\' || notify-send -u critical yt-dlp \'Download failed!\''",
         "--release",
     )
 
