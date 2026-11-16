@@ -3,7 +3,8 @@ alias grep='grep --color=auto'
 alias tree='tree -C'
 alias R='R --quiet'
 
-alias edit='$EDITOR $1'
+alias pwd=/usr/bin/pwd
+alias edit='$EDITOR'
 alias open=xdg-open
 alias summon=i3-summon
 
