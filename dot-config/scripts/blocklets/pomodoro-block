@@ -5,6 +5,7 @@ WORK_MIN=25
 BREAK_MIN=5
 STATE_FILE="${STATE_FILE:-/tmp/pomodoro_state}"
 EXIT_CODE=0
+alias notify='notify-send -t 10000 -u critical "🍅 Pomodoro"'
 
 # Initialize the state file if it doesn't exist (RAM is cleared on reboot)
 # Format: STATUS REMAINING_SECONDS PHASE
@@ -50,14 +51,12 @@ if [[ "$STATUS" == "RUNNING" ]]; then
             PHASE="BREAK"
             REMAINING=$((BREAK_MIN * 60))
             EXIT_CODE=33
-            notify-send -u critical "🍅 Pomodoro"\
-                "Work session complete! Take a break."
+            notify "Work session complete! Take a break."
         else
             PHASE="WORK"
             REMAINING=$((WORK_MIN * 60))
             EXIT_CODE=33
-            notify-send -u critical "🍅 Pomodoro"\
-                "Break over! Back to focus."
+            notify "Break over! Back to focus."
         fi
         STATUS="STOPPED"
     fi
