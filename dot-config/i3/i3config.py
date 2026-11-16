@@ -176,6 +176,10 @@ def application():
         'exec j4-dmenu-desktop --dmenu="$config/i3/scripts/menu -p Run '
         "'$bar-bgcolor' '$bar-fgcolor'\" &> $home/.var/dmenu.log",
     )
+    km.bind(
+        "$mod+a",
+        'exec terminator -T ranger -x ranger',
+    )
 
     # download a youtube video from the copied url
     km.bind(
