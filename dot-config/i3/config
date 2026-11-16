@@ -145,7 +145,7 @@ assign [class=".exe$"] workspace number $ws10
 assign [instance="qemu"] workspace number $ws10
 
 for_window [class="firefox" instance="Navigator"] border pixel, mark f
-for_window [class="copyq"] floating enable, sticky enable, resize set 600 400, move position center
+for_window [class="copyq"] floating enable, sticky enable, resize set 600 550, move position center
 for_window [class="Peek"] sticky enable
 for_window [class="Terminator" title="TCalculator"] floating enable, resize grow height 60, move position center
 for_window [class="Terminator" title="VimPad"] floating enable, resize set 1200 800, move position center

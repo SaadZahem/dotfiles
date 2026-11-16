@@ -23,7 +23,7 @@
     search = log --pretty=format:'%C(yellow)%h %Cblue%ad %Creset%s%Cgreen [%cn] %Cred%d' --decorate --date=short -S
     ft = describe --always --contains
     fb = branch -a --contains
-    not-merged = !"git branch | grep -v \"$(git branch --merged)\""
+    not-merged = !(git branch && git branch --merged) | sort | uniq -u
 
     # Action-taking aliases
 
