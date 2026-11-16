@@ -39,10 +39,22 @@ case $BLOCK_BUTTON in
         fi
         STATUS="STOPPED"
         ;;
+    4) # scroll wheel down
+        if [[ "$STATUS" == "RUNNING" ]]; then
+            STATUS="PAUSED"
+        fi
+        REMAINING=$((REMAINING - 10))
+        ;;
+    5) # scroll wheel up
+        if [[ "$STATUS" == "RUNNING" ]]; then
+            STATUS="PAUSED"
+        fi
+        REMAINING=$((REMAINING + 10))
+        ;;
 esac
 
 # 2. Process the Timer Tick
-if [[ "$STATUS" == "RUNNING" ]]; then
+if [[ "$STATUS" == "RUNNING" && "$BLOCK_BUTTON" != '1' ]]; then
     REMAINING=$((REMAINING - 1))
 
     # Phase Complete!
