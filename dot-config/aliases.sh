@@ -4,6 +4,7 @@ alias tree='tree -C'
 alias R='R --quiet'
 
 alias pwd=/usr/bin/pwd
+alias dex='dex --term $TERMINAL'
 alias edit='$EDITOR'
 alias open=xdg-open
 alias summon=i3-summon
