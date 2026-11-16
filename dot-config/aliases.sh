@@ -34,9 +34,15 @@ pcurlloop() {
         sleep ${1:-6}
     done
 }
-stderr() { "$@" 1>/dev/null }
-stdout() { "$@" 2>/dev/null }
-silent() { "$@" &>/dev/null }
+stderr() {
+    "$@" 1>/dev/null
+}
+stdout() {
+    "$@" 2>/dev/null
+}
+silent() {
+    "$@" &>/dev/null
+}
 orphans() {
     for pack in $(pacman -Qdtq)
     do

@@ -33,7 +33,7 @@ km.bind(
 )
 km.bind(
     "$mod+x",
-    'exec cd $config/actions && cat "$(ls | $config/i3/scripts/menu -p Actions $bar-bgcolor $bar-fgcolor)" | sh',
+    'exec cd $config/actions && bash "$(ls | $config/i3/scripts/menu -p Actions $bar-bgcolor $bar-fgcolor)"',
 )
 km.bind("$mod+Shift+x", "exec $config/i3/scripts/shiftx")
 
