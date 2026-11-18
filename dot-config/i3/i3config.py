@@ -181,15 +181,6 @@ def application():
         'exec terminator -T ranger -x ranger',
     )
 
-    # download a youtube video from the copied url
-    km.bind(
-        "$mod+y",
-        r'exec $noid bash -c \'yt-dlp --recode-video mp4 -P ~/Downloads "$(xclip -o -selection clipboard)"'
-        " &>~/.var/yt-dlp.log"
-        r" && notify-send yt-dlp \'Download finished!\' || notify-send -u critical yt-dlp \'Download failed!\''",
-        "--release",
-    )
-
     # launch custom Unicode grid picker
     km.bind("$mod+u", "exec $noid rofi-unicode")
 
