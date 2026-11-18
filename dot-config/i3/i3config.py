@@ -110,8 +110,8 @@ def layout():
     km.bind("$mod+Shift+minus", "move scratchpad")
 
     # toggle bar visibility
-    km.bind("$mod+Shift+b", "bar mode toggle")
-    km.bind("$mod+$alt+b", "bar mode invisible")
+    km.bind("$mod+b", "bar mode toggle")
+    km.bind("$mod+Shift+b", "bar mode invisible")
 
     # show window title
     km.bind("$mod+t", "border normal")
