@@ -1,1 +1,0 @@
-cd; source .config/aliases.sh; cd Downloads; xclip -selection clipboard -o | xargs -I{} yt-low '{}'

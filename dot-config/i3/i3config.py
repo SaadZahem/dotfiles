@@ -110,8 +110,8 @@ def layout():
     km.bind("$mod+Shift+minus", "move scratchpad")
 
     # toggle bar visibility
-    km.bind("$mod+Shift+b", "bar mode toggle")
-    km.bind("$mod+$alt+b", "bar mode invisible")
+    km.bind("$mod+b", "bar mode toggle")
+    km.bind("$mod+Shift+b", "bar mode invisible")
 
     # show window title
     km.bind("$mod+t", "border normal")
@@ -128,8 +128,8 @@ def window():
         down=["j", "Down"],
         up=["k", "Up"],
         right=["l", "Right"],
-        parent=["p"],
-        child=["Shift+p"],
+        parent=["o"],
+        child=["i"],
         next=["bracketright", "Tab"],
         prev=["bracketleft", "Shift+Tab"],
         mode_toggle=["semicolon"],
@@ -179,15 +179,6 @@ def application():
     km.bind(
         "$mod+a",
         'exec terminator -T ranger -x ranger',
-    )
-
-    # download a youtube video from the copied url
-    km.bind(
-        "$mod+y",
-        r'exec $noid bash -c \'yt-dlp --recode-video mp4 -P ~/Downloads "$(xclip -o -selection clipboard)"'
-        " &>~/.var/yt-dlp.log"
-        r" && notify-send yt-dlp \'Download finished!\' || notify-send -u critical yt-dlp \'Download failed!\''",
-        "--release",
     )
 
     # launch custom Unicode grid picker

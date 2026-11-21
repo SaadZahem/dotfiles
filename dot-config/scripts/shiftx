@@ -1,22 +1,5 @@
 #!/usr/bin/env sh
 
 actions_dir=~/.config/actions
-sel=$(
-    cd "$actions_dir"
-    find . -type f -not -name ".*" -exec cat {} \; > .shiftx
-    echo "-add" >> .shiftx
-    cat .shiftx | sort | uniq | mymenu -p shiftX
-)
-
-case "$sel" in
-    -add)(
-        cd "$actions_dir"
-        cmd=$(cat .shiftx | mymenu -p add_command) &&\
-        name=$(ls | mymenu -p name_command) &&\
-        echo "$cmd" > "$name"
-        );;
-    *)
-        # This is run in home directory
-        echo "$sel" | sh &> "$actions_dir/.shiftx"
-        ;;
-esac
+sel=$(ls "$actions_dir" | sort | uniq | mymenu -p Edit) || exit $?
+vimpad "$actions_dir/$sel"
